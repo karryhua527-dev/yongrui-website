@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Cable Fittings Catalog &mdash;Yongrui</title>
+  <meta name="description" content="60+ SKUs of gym cable fittings: ball terminals, eye ends, snap hooks, self-locking connectors, pulleys, threaded rods. ISO certified. Wholesale & OEM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--orange:#FF6B00;--orange-light:#FF8C30;--black:#0A0A0A;--dark:#111;
+      --dark2:#1A1A1A;--dark3:#242424;--gray:#888;--gray-light:#CCC;--white:#FFF;
+      --border:rgba(255,255,255,0.08)}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,sans-serif;background:var(--black);color:var(--white);line-height:1.6}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+      background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);padding:0 5%;
+      display:flex;align-items:center;justify-content:space-between;height:68px}
+    .logo{font-size:1.5rem;font-weight:900;color:var(--white);text-decoration:none}
+    .logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--gray-light);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--orange)}
+    .nav-cta{background:var(--orange);color:var(--white);padding:.5rem 1.25rem;
+      border-radius:6px;font-weight:700;font-size:.875rem;text-decoration:none;transition:background .2s}
+    .nav-cta:hover{background:var(--orange-light)}
+    /* HERO */
+    .page-hero{padding:120px 5% 60px;
+      background:linear-gradient(135deg,var(--black) 0%,#1a0a00 60%,var(--black) 100%);
+      position:relative;overflow:hidden}
+    .page-hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;
+      background:radial-gradient(ellipse at 80% 50%,rgba(255,107,0,.1) 0%,transparent 65%);
+      pointer-events:none}
+    .page-hero-inner{max-width:1300px;margin:0 auto}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--gray);margin-bottom:1.25rem}
+    .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}
+    .breadcrumb a:hover{color:var(--orange)}
+    .breadcrumb span{color:var(--gray-light)}
+    .section-label{font-size:.75rem;font-weight:700;color:var(--orange);
+      text-transform:uppercase;letter-spacing:.15em;margin-bottom:.75rem}
+    h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.1;
+      letter-spacing:-1px;margin-bottom:1rem}
+    h1 em{color:var(--orange);font-style:normal}
+    .hero-desc{font-size:1.05rem;color:var(--gray-light);max-width:620px;margin-bottom:2rem}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:.6rem}
+    .tag{background:var(--dark2);border:1px solid var(--border);color:var(--gray-light);
+      padding:.35rem .85rem;border-radius:100px;font-size:.8rem;font-weight:500}
+    .tag.hot{background:rgba(255,107,0,.1);border-color:rgba(255,107,0,.3);color:var(--orange)}
+    /* FILTER */
+    .filter-bar{background:var(--dark);border-bottom:1px solid var(--border);
+      padding:0 5%;position:sticky;top:68px;z-index:100}
+    .filter-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;
+      gap:.75rem;overflow-x:auto;padding:1rem 0;scrollbar-width:none}
+    .filter-inner::-webkit-scrollbar{display:none}
+    .filter-btn{white-space:nowrap;padding:.45rem 1.1rem;border-radius:100px;
+      border:1px solid var(--border);background:var(--dark2);color:var(--gray-light);
+      font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+    .filter-btn:hover{border-color:var(--orange);color:var(--orange)}
+    .filter-btn.active{background:var(--orange);border-color:var(--orange);color:var(--white)}
+    /* MAIN */
+    main{padding:3rem 5% 5rem;max-width:1300px;margin:0 auto}
+    .category-block{margin-bottom:4rem}
+    .category-title{font-size:1.1rem;font-weight:800;margin-bottom:1.5rem;
+      padding-bottom:.75rem;border-bottom:2px solid var(--orange);
+      display:flex;align-items:center;gap:.75rem}
+    .category-count{font-size:.78rem;font-weight:600;color:var(--orange);
+      background:rgba(255,107,0,.12);border:1px solid rgba(255,107,0,.25);
+      padding:.2rem .6rem;border-radius:100px}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
+    /* CARD */
+    .product-card{background:var(--dark2);border:1px solid var(--border);
+      border-radius:16px;overflow:hidden;
+      transition:border-color .25s,transform .2s,box-shadow .25s}
+    .product-card:hover{border-color:rgba(255,107,0,.45);
+      transform:translateY(-4px);box-shadow:0 12px 40px rgba(255,107,0,.08)}
+    .product-img{position:relative;width:100%;padding-top:100%;
+      background:#fff;overflow:hidden}
+    .product-img img{position:absolute;inset:0;width:100%;height:100%;
+      object-fit:contain;padding:12px;background:#fff;
+      transition:transform .4s ease}
+    .product-card:hover .product-img img{transform:scale(1.06)}
+    .product-img-overlay{position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(10,10,10,.12) 0%,transparent 40%);
+      pointer-events:none}
+    .product-badge{position:absolute;top:10px;left:10px;
+      background:var(--orange);color:var(--white);
+      font-size:.68rem;font-weight:700;padding:.22rem .55rem;
+      border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
+    .product-body{padding:1.1rem 1.1rem 1.35rem}
+    .product-name{font-size:.93rem;font-weight:800;margin-bottom:.4rem;
+      color:var(--white);line-height:1.35}
+    .product-desc{font-size:.79rem;color:var(--gray);line-height:1.5;margin-bottom:.9rem}
+    .product-specs{list-style:none}
+    .product-specs li{display:flex;justify-content:space-between;
+      font-size:.77rem;padding:.35rem 0;border-bottom:1px solid var(--border)}
+    .product-specs li:last-child{border-bottom:none}
+    .product-specs .k{color:var(--gray)}
+    .product-specs .v{font-weight:600;color:var(--white);text-align:right;max-width:58%}
+    .card-actions{margin-top:1rem}
+    .btn-quote{width:100%;background:var(--orange);color:var(--white);
+      border:none;border-radius:8px;padding:.6rem;font-size:.85rem;font-weight:700;
+      cursor:pointer;transition:background .2s;font-family:inherit;
+      text-decoration:none;display:block;text-align:center}
+    .btn-quote:hover{background:var(--orange-light)}
+    /* CTA */
+    .cta-banner{background:linear-gradient(135deg,#1a0a00 0%,var(--dark2) 100%);
+      border:1px solid rgba(255,107,0,.2);border-radius:20px;
+      padding:3rem;text-align:center;margin-bottom:3rem}
+    .cta-banner h3{font-size:1.8rem;font-weight:900;margin-bottom:.75rem}
+    .cta-banner h3 em{color:var(--orange);font-style:normal}
+    .cta-banner p{color:var(--gray-light);margin-bottom:1.75rem}
+    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--orange);color:var(--white);padding:.85rem 2rem;
+      border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;
+      transition:background .2s;display:inline-block}
+    .btn-primary:hover{background:var(--orange-light)}
+    .btn-secondary{background:transparent;color:var(--white);padding:.85rem 2rem;
+      border-radius:8px;font-weight:600;font-size:1rem;text-decoration:none;
+      border:1px solid rgba(255,255,255,.2);transition:border-color .2s,color .2s;
+      display:inline-block}
+    .btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+    /* FOOTER */
+    footer{background:var(--black);border-top:1px solid var(--border);padding:2.5rem 5%}
+    .footer-inner{max-width:1300px;margin:0 auto;display:flex;
+      justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-size:1.2rem;font-weight:900}
+    .footer-logo span{color:var(--orange)}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{color:var(--gray);text-decoration:none;font-size:.875rem;transition:color .2s}
+    .footer-links a:hover{color:var(--orange)}
+    .footer-copy{font-size:.78rem;color:var(--gray)}
+    .cert-pill{background:var(--dark2);border:1px solid var(--border);
+      color:var(--gray-light);padding:.25rem .65rem;border-radius:4px;
+      font-size:.72rem;font-weight:600}
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      .nav-links{display:none}
+      .products-grid{grid-template-columns:1fr 1fr;gap:.85rem}
+      .product-body{padding:.85rem}
+      main{padding:2rem 4% 4rem}
+      .page-hero{padding:100px 4% 40px}
+    }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">YONG<span>RUI</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#products">Gym Cable</a></li>
+    <li><a href="fittings.html" class="active">Fittings</a></li>
+    <li><a href="index.html#why">Why Us</a></li>
+    <li><a href="index.html#custom">Custom</a></li>
+    <li><a href="index.html#inquiry">Contact</a></li>
+  </ul>
+  <a href="index.html#inquiry" class="nav-cta">Get a Quote</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>&mdash;/span><span>Fittings Catalog</span>
+    </div>
+    <div class="section-label">Full Product Catalog</div>
+    <h1>Gym Cable <em>Fittings</em></h1>
+    <p class="hero-desc">60+ SKUs of stainless steel gym cable fittings &mdash;ball terminals, eye ends, snap hooks, self-locking connectors, pulleys, threaded rods and accessories. OEM &amp; wholesale orders welcome.</p>
+    <div class="hero-tags">
+      <span class="tag hot">ISO 9001 Certified</span>
+      <span class="tag hot">RoHS Compliant</span>
+      <span class="tag">SS304 / SS316</span>
+      <span class="tag">OEM / Custom</span>
+      <span class="tag">Factory Direct</span>
+      <span class="tag">MOQ Flexible</span>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterCat('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCat('cable-end',this)">Ball Terminals</button>
+    <button class="filter-btn" onclick="filterCat('eye-end',this)">Eye &amp; Fork Ends</button>
+    <button class="filter-btn" onclick="filterCat('m-terminal',this)">M Terminal</button>
+    <button class="filter-btn" onclick="filterCat('snap-hook',this)">Snap Hook</button>
+    <button class="filter-btn" onclick="filterCat('self-lock',this)">Self-Locking</button>
+    <button class="filter-btn" onclick="filterCat('connector',this)">Connectors</button>
+    <button class="filter-btn" onclick="filterCat('lock-sleeve',this)">Lock Sleeve Sets</button>
+    <button class="filter-btn" onclick="filterCat('threaded-rod',this)">Threaded Rods</button>
+    <button class="filter-btn" onclick="filterCat('pulley',this)">Pulleys</button>
+    <button class="filter-btn" onclick="filterCat('accessories',this)">Accessories</button>
+  </div>
+</div>
+
+<main>
+
+  <div class="category-block" data-cat="cable-end">
+    <div class="category-title">Cable End &mdash;Ball Terminals<span class="category-count">8 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/圆球端子3.4mm.png" alt="Round Ball Terminal Φ3.4mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Round Ball Terminal Φ3.4mm</div>
+          <p class="product-desc">Small round ball cable end for Φ3.2mm gym cable slot-lock connections.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ3.2 mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ3.4 mm</span></li><li><span class="k">Material</span><span class="v">Zinc Alloy / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/圆球端子4.2mm.png" alt="Round Ball Terminal Φ4.2mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Round Ball Terminal Φ4.2mm</div>
+          <p class="product-desc">Round ball cable end for Φ4mm gym cable slot-lock connections.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ4 mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ4.2 mm</span></li><li><span class="k">Material</span><span class="v">Zinc Alloy / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/球头8.5端子.png" alt="Ball End Terminal Φ8.5mm" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Ball End Terminal Φ8.5mm</div>
+          <p class="product-desc">Medium ball terminal for cable machine weight stack anchor slots.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ8.5 mm</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/球头10端子.png" alt="Ball End Terminal Φ10mm" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Ball End Terminal Φ10mm</div>
+          <p class="product-desc">Standard ball terminal widely used on commercial cable machines.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ5&mdash; mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ10 mm</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/球头14孔径3.5端子.png" alt="Ball End Terminal Φ14 (Bore Φ3.5mm)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Ball End Terminal Φ14 (Bore Φ3.5mm)</div>
+          <p class="product-desc">Large ball terminal with Φ3.5mm bore for coated gym cable.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ3.2&mdash; mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ14 mm</span></li><li><span class="k">Bore</span><span class="v">Φ3.5 mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/球头14孔径4.5端子.png" alt="Ball End Terminal Φ14 (Bore Φ4.5mm)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Ball End Terminal Φ14 (Bore Φ4.5mm)</div>
+          <p class="product-desc">Large ball terminal with Φ4.5mm bore for coated gym cable.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">Ball Dia.</span><span class="v">Φ14 mm</span></li><li><span class="k">Bore</span><span class="v">Φ4.5 mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/不锈钢圆球端&mdash;1.png" alt="SS Round Ball Terminal" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">SS</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">SS Round Ball Terminal</div>
+          <p class="product-desc">Stainless steel ball end terminal &mdash;anti-rust, for high-end gym equipment.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">SS304 / SS316</span></li><li><span class="k">Finish</span><span class="v">Polished</span></li><li><span class="k">MOQ</span><span class="v">100 pcs</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀锌短圆球端子5mm.png" alt="Zinc-Plated Short Ball Terminal Φ5mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Zinc-Plated Short Ball Terminal Φ5mm</div>
+          <p class="product-desc">Short zinc-plated ball terminal for compact cable machine slot anchors.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ5 mm</span></li><li><span class="k">Plating</span><span class="v">Zinc</span></li><li><span class="k">Length</span><span class="v">Short</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="eye-end">
+    <div class="category-title">Cable End &mdash;Eye &amp; Fork Terminals<span class="category-count">3 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀锌鱼眼端&mdash;mm.png" alt="Zinc-Plated Eye End Terminal Φ5mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Zinc-Plated Eye End Terminal Φ5mm</div>
+          <p class="product-desc">Eye/fork terminal for pivot or hook connection on fitness machines.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ5 mm</span></li><li><span class="k">Plating</span><span class="v">Zinc</span></li><li><span class="k">Type</span><span class="v">Eye / Clevis</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀锌鱼眼端&mdash;mm.png" alt="Zinc-Plated Eye End Terminal Φ6mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Zinc-Plated Eye End Terminal Φ6mm</div>
+          <p class="product-desc">Eye/fork terminal for heavier duty cable assemblies.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ6 mm</span></li><li><span class="k">Plating</span><span class="v">Zinc</span></li><li><span class="k">Type</span><span class="v">Eye / Clevis</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/鱼眼关节轴承.png" alt="Rod End Bearing (Heim Joint)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Rod End Bearing (Heim Joint)</div>
+          <p class="product-desc">360° articulating rod end bearing &mdash;reduces side-load stress on cable assemblies.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M8 / M10 / M12</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li><li><span class="k">Type</span><span class="v">Male / Female</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="m-terminal">
+    <div class="category-title">M-Type Threaded Terminal<span class="category-count">1 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M端子.png" alt="M-Type Threaded Cable End" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M-Type Threaded Cable End</div>
+          <p class="product-desc">Threaded barrel terminal for direct bolt-on frame connection on cable machines.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M8 / M10 / M12</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li><li><span class="k">MOQ</span><span class="v">100 pcs</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="snap-hook">
+    <div class="category-title">Snap Hook &amp; Lock Sleeve<span class="category-count">4 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀锌M8弹簧&mdash;png" alt="Zinc-Plated M8 Spring Snap Hook" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Zinc-Plated M8 Spring Snap Hook</div>
+          <p class="product-desc">M8 spring bolt snap hook for quick cable end attachment and detachment.</p>
+          <ul class="product-specs"><li><span class="k">Size</span><span class="v">M8</span></li><li><span class="k">Plating</span><span class="v">Zinc</span></li><li><span class="k">Gate</span><span class="v">Spring Bolt</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/卡头5MM.png" alt="Cable Lock Clip 5mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Lock Clip 5mm</div>
+          <p class="product-desc">Press-fit cable locking clip for Φ5mm gym cable terminations without swaging.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ5 mm</span></li><li><span class="k">Material</span><span class="v">Steel</span></li><li><span class="k">Type</span><span class="v">Press Fit</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/卡头6MM.png" alt="Cable Lock Clip 6mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Lock Clip 6mm</div>
+          <p class="product-desc">Press-fit cable locking clip for Φ6mm gym cable terminations.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ6 mm</span></li><li><span class="k">Material</span><span class="v">Steel</span></li><li><span class="k">Type</span><span class="v">Press Fit</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/锁套弹扣套装.png" alt="Lock Sleeve &amp; Snap Hook Set" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Set</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Lock Sleeve &amp; Snap Hook Set</div>
+          <p class="product-desc">Complete set: lock sleeve + snap hook for gym cable assembly. Ready to swage.</p>
+          <ul class="product-specs"><li><span class="k">Includes</span><span class="v">Lock Sleeve + Snap Hook</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="self-lock">
+    <div class="category-title">Self-Locking Connectors<span class="category-count">5 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀铬平头自紧接&mdash;png" alt="Chrome Flat-Head Self-Locking Connector" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Chrome Flat-Head Self-Locking Connector</div>
+          <p class="product-desc">Flat-head chrome-plated self-locking cable end. Tightens under load, no tools needed.</p>
+          <ul class="product-specs"><li><span class="k">Head</span><span class="v">Flat</span></li><li><span class="k">Finish</span><span class="v">Chrome</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/镀铬圆头自紧接&mdash;png" alt="Chrome Round-Head Self-Locking Connector" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Chrome Round-Head Self-Locking Connector</div>
+          <p class="product-desc">Round-head chrome self-locking connector. Low-friction smooth profile.</p>
+          <ul class="product-specs"><li><span class="k">Head</span><span class="v">Round</span></li><li><span class="k">Finish</span><span class="v">Chrome</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/带螺纹自紧接头M12.png" alt="Threaded Self-Locking Connector M12" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Threaded Self-Locking Connector M12</div>
+          <p class="product-desc">Self-locking connector with M12 threaded stem for direct bolt-in installation.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M12</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ5&mdash; mm</span></li><li><span class="k">Material</span><span class="v">Steel, Chrome</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/自紧接头带螺纹M10 .png" alt="Threaded Self-Locking Connector M10" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Threaded Self-Locking Connector M10</div>
+          <p class="product-desc">M10 threaded self-locking connector for medium-duty cable machine frames.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M10</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">Material</span><span class="v">Steel, Chrome</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/自紧接头带螺纹M12 .png" alt="Threaded Self-Locking Connector M12 (B)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Threaded Self-Locking Connector M12 (B)</div>
+          <p class="product-desc">M12 variant with enhanced grip sleeve for higher-load applications.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M12</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ5&mdash; mm</span></li><li><span class="k">Material</span><span class="v">Steel, Chrome</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="connector">
+    <div class="category-title">Cable Connectors &amp; Adaptors<span class="category-count">12 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/圆孔U型接&mdash;png" alt="Round-Hole U-Bolt Connector" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Round-Hole U-Bolt Connector</div>
+          <p class="product-desc">U-bolt connector with round hole for cable loop termination. Standard size.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">U-Bolt</span></li><li><span class="k">Hole</span><span class="v">Round</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/SS不锈钢圆孔接&mdash;png" alt="SS Round-Hole Connector" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">SS</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">SS Round-Hole Connector</div>
+          <p class="product-desc">Stainless steel round-hole cable connector for corrosion-resistant applications.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">SS304 / SS316</span></li><li><span class="k">Finish</span><span class="v">Polished</span></li><li><span class="k">MOQ</span><span class="v">50 pcs</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/U型接头（大）.png" alt="U-Bolt Connector (Large)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">U-Bolt Connector (Large)</div>
+          <p class="product-desc">Heavy-duty large U-bolt cable connector for high-load anchor points.</p>
+          <ul class="product-specs"><li><span class="k">Size</span><span class="v">Large</span></li><li><span class="k">Material</span><span class="v">Steel, Zinc-plated</span></li><li><span class="k">WLL</span><span class="v">Up to 300 kg</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/U型接头（小）.png" alt="U-Bolt Connector (Small)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">U-Bolt Connector (Small)</div>
+          <p class="product-desc">Compact U-bolt connector for light-duty cable assemblies.</p>
+          <ul class="product-specs"><li><span class="k">Size</span><span class="v">Small</span></li><li><span class="k">Material</span><span class="v">Steel, Zinc-plated</span></li><li><span class="k">WLL</span><span class="v">Up to 150 kg</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/大T型接&mdash;png" alt="Large T-Type Connector" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Large T-Type Connector</div>
+          <p class="product-desc">Large T-type cable connector for multi-directional cable routing on functional trainers.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">T-Connector</span></li><li><span class="k">Size</span><span class="v">Large</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/中T型接&mdash;拷贝.png" alt="Medium T-Type Connector" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Medium T-Type Connector</div>
+          <p class="product-desc">Medium T-type connector for mid-size functional trainer and cable crossover machines.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">T-Connector</span></li><li><span class="k">Size</span><span class="v">Medium</span></li><li><span class="k">Material</span><span class="v">Steel / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/龙门架接头A.png" alt="Cable Machine Frame Connector A" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Machine Frame Connector A</div>
+          <p class="product-desc">Type-A frame connector for cable crossover and functional trainer upright tubes.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Frame Connector A</span></li><li><span class="k">Fit</span><span class="v">Square / Round Tube</span></li><li><span class="k">Material</span><span class="v">Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/龙门架接头B.png" alt="Cable Machine Frame Connector B" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Machine Frame Connector B</div>
+          <p class="product-desc">Type-B frame connector with wider bracket for heavy-duty cable machine frames.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Frame Connector B</span></li><li><span class="k">Fit</span><span class="v">40&mdash;0mm Tube</span></li><li><span class="k">Material</span><span class="v">Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/龙门架接头C.png" alt="Cable Machine Frame Connector C" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Machine Frame Connector C</div>
+          <p class="product-desc">Type-C angled connector for diagonal cable routing on functional trainer frames.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Frame Connector C</span></li><li><span class="k">Angle</span><span class="v">Adjustable</span></li><li><span class="k">Material</span><span class="v">Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合接头A.png" alt="Combination Connector Set A" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Set</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Combination Connector Set A</div>
+          <p class="product-desc">Complete connector assembly A: cable end + swivel + snap hook. Ready to install.</p>
+          <ul class="product-specs"><li><span class="k">Includes</span><span class="v">End + Swivel + Hook</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合接头B.png" alt="Combination Connector Set B" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Set</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Combination Connector Set B</div>
+          <p class="product-desc">Connector assembly B with enhanced swivel and locking gate snap hook.</p>
+          <ul class="product-specs"><li><span class="k">Includes</span><span class="v">End + Swivel + Hook</span></li><li><span class="k">Gate</span><span class="v">Locking</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合接头A最新版&mdash;.png" alt="Combination Connector Set A (New)" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">New</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Combination Connector Set A (New)</div>
+          <p class="product-desc">Updated Set A with improved swivel bearing and surface finish.</p>
+          <ul class="product-specs"><li><span class="k">Version</span><span class="v">Updated</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">Finish</span><span class="v">Chrome / SS</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="lock-sleeve">
+    <div class="category-title">Lock Sleeve Connector Assemblies<span class="category-count">3 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合锁套接头C.png" alt="Lock Sleeve Assembly C" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Lock Sleeve Assembly C</div>
+          <p class="product-desc">Cable assembly with lock sleeve + snap hook type C. Secure, reusable termination.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Lock Sleeve C</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ4&mdash; mm</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合锁套接头D.png" alt="Lock Sleeve Assembly D" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Lock Sleeve Assembly D</div>
+          <p class="product-desc">Type D lock sleeve connector with heavy-duty snap for commercial gym cables.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Lock Sleeve D</span></li><li><span class="k">Load</span><span class="v">Heavy Duty</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/组合锁套接头E.png" alt="Lock Sleeve Assembly E" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Lock Sleeve Assembly E</div>
+          <p class="product-desc">Type E premium assembly with swivel and locking gate carabiner.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Lock Sleeve E</span></li><li><span class="k">Gate</span><span class="v">Locking Carabiner</span></li><li><span class="k">MOQ</span><span class="v">50 sets</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="threaded-rod">
+    <div class="category-title">Threaded Rods &amp; Hollow Bolts<span class="category-count">7 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M8螺杆.png" alt="M8 Threaded Rod" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M8 Threaded Rod</div>
+          <p class="product-desc">M8 solid threaded rod for cable machine frame assembly and tension adjustment.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M8</span></li><li><span class="k">Material</span><span class="v">Carbon Steel</span></li><li><span class="k">Length</span><span class="v">Custom</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M10螺杆.png" alt="M10 Threaded Rod" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M10 Threaded Rod</div>
+          <p class="product-desc">M10 threaded rod for medium-duty fitness machine structural connections.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M10</span></li><li><span class="k">Material</span><span class="v">Carbon Steel</span></li><li><span class="k">Length</span><span class="v">Custom</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M12中控螺杆.png" alt="M12 Hollow-Core Bolt" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M12 Hollow-Core Bolt</div>
+          <p class="product-desc">M12 hollow-core bolt for cable routing through frame uprights on cable machines.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M12</span></li><li><span class="k">Core</span><span class="v">Hollow, Φ5mm bore</span></li><li><span class="k">Material</span><span class="v">Carbon Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M12中空螺杆黑色.png" alt="M12 Hollow Bolt (Black)" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M12 Hollow Bolt (Black)</div>
+          <p class="product-desc">Black-coated M12 hollow bolt &mdash;cable routes through center.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M12</span></li><li><span class="k">Finish</span><span class="v">Black Oxide</span></li><li><span class="k">Core</span><span class="v">Hollow</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M12中控螺长&mdash;png" alt="M12 Hollow Long Rod" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M12 Hollow Long Rod</div>
+          <p class="product-desc">Extended length M12 hollow rod for cross-frame cable routing applications.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M12</span></li><li><span class="k">Length</span><span class="v">Long (custom)</span></li><li><span class="k">Core</span><span class="v">Hollow</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M14中空螺杆.png" alt="M14 Hollow Bolt" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M14 Hollow Bolt</div>
+          <p class="product-desc">M14 hollow-core bolt for heavy-duty frames with larger cable diameters.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M14</span></li><li><span class="k">Core</span><span class="v">Hollow</span></li><li><span class="k">Material</span><span class="v">Carbon Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/M16中控螺杆.png" alt="M16 Hollow-Core Bolt" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">M16 Hollow-Core Bolt</div>
+          <p class="product-desc">M16 heavy-duty hollow bolt for commercial grade cable machine uprights.</p>
+          <ul class="product-specs"><li><span class="k">Thread</span><span class="v">M16</span></li><li><span class="k">Core</span><span class="v">Hollow, Φ8mm bore</span></li><li><span class="k">Material</span><span class="v">Carbon Steel</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="pulley">
+    <div class="category-title">Pulleys &amp; Brackets<span class="category-count">8 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/88mm铝合金滑&mdash;png" alt="88mm Aluminum Alloy Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">88mm Aluminum Alloy Pulley</div>
+          <p class="product-desc">Precision 88mm aluminum sheave pulley with sealed bearing. Low noise, high load.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">88 mm</span></li><li><span class="k">Material</span><span class="v">Aluminum Alloy</span></li><li><span class="k">Bearing</span><span class="v">Sealed Ball</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/90塑胶支架滑轮参数.png" alt="90mm Plastic Bracket Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">90mm Plastic Bracket Pulley</div>
+          <p class="product-desc">90mm pulley with integrated plastic mounting bracket. Easy retrofit installation.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">90 mm</span></li><li><span class="k">Bracket</span><span class="v">Plastic</span></li><li><span class="k">Cable Groove</span><span class="v">Φ5&mdash; mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/95mm滑轮参数.png" alt="95mm Standard Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">95mm Standard Pulley</div>
+          <p class="product-desc">95mm standard pulley wheel for weight stack cable machines.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">95 mm</span></li><li><span class="k">Material</span><span class="v">Nylon / Steel</span></li><li><span class="k">Cable Groove</span><span class="v">Φ5&mdash; mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/95mm铝合金滑轮参&mdash;png" alt="95mm Aluminum Alloy Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">95mm Aluminum Alloy Pulley</div>
+          <p class="product-desc">95mm aluminum pulley with improved groove profile for reduced cable wear.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">95 mm</span></li><li><span class="k">Material</span><span class="v">Aluminum Alloy</span></li><li><span class="k">Bearing</span><span class="v">Sealed Ball</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/97mm滑轮参数.png" alt="97mm Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">97mm Pulley</div>
+          <p class="product-desc">97mm pulley wheel compatible with most commercial cable machine frames.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">97 mm</span></li><li><span class="k">Material</span><span class="v">Nylon / Aluminum</span></li><li><span class="k">Cable Groove</span><span class="v">Φ5&mdash; mm</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/110mm滑轮参数.png" alt="110mm Standard Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">110mm Standard Pulley</div>
+          <p class="product-desc">Large 110mm pulley for functional trainers and high-load weight stack machines.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">110 mm</span></li><li><span class="k">Material</span><span class="v">Nylon / Aluminum</span></li><li><span class="k">WLL</span><span class="v">Up to 500 kg</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/110mm铝合金滑轮参&mdash;png" alt="110mm Aluminum Alloy Pulley" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">110mm Aluminum Alloy Pulley</div>
+          <p class="product-desc">Premium 110mm full-aluminum pulley with precision ball bearing.</p>
+          <ul class="product-specs"><li><span class="k">Diameter</span><span class="v">110 mm</span></li><li><span class="k">Material</span><span class="v">Aluminum Alloy</span></li><li><span class="k">Bearing</span><span class="v">Deep Groove Ball</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;滑轮SKU/滑轮支架参数.png" alt="Pulley Mounting Bracket" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Pulley Mounting Bracket</div>
+          <p class="product-desc">Universal steel mounting bracket for pulley installation. Bolt-on.</p>
+          <ul class="product-specs"><li><span class="k">Type</span><span class="v">Universal Bracket</span></li><li><span class="k">Material</span><span class="v">Carbon Steel, Powder-Coated</span></li><li><span class="k">Mounting</span><span class="v">M10 / M12 Bolt</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block" data-cat="accessories">
+    <div class="category-title">Accessories &amp; Hardware<span class="category-count">8 products</span></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/鸡心&mdash;MM.png" alt="Wire Rope Thimble 5mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Wire Rope Thimble 5mm</div>
+          <p class="product-desc">Heart-shaped thimble protects Φ5mm cable loop from wear at termination.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ5 mm</span></li><li><span class="k">Material</span><span class="v">SS304 / Zinc-plated</span></li><li><span class="k">Type</span><span class="v">Heart-shaped</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/鸡心&mdash;MM.png" alt="Wire Rope Thimble 6mm" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Wire Rope Thimble 6mm</div>
+          <p class="product-desc">Heart-shaped thimble for Φ6mm wire rope loop protection.</p>
+          <ul class="product-specs"><li><span class="k">Cable Dia.</span><span class="v">Φ6 mm</span></li><li><span class="k">Material</span><span class="v">SS304 / Zinc-plated</span></li><li><span class="k">Type</span><span class="v">Heart-shaped</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/铝套堵头.png" alt="Aluminum Ferrule / End Cap" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Aluminum Ferrule / End Cap</div>
+          <p class="product-desc">Aluminum crimp ferrule / end cap for cable loop termination. No swaging tool needed.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Aluminum</span></li><li><span class="k">Cable Dia.</span><span class="v">Φ3.2&mdash; mm</span></li><li><span class="k">Type</span><span class="v">Oval / Round</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/垫片.png" alt="Spacer / Washer" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Spacer / Washer</div>
+          <p class="product-desc">Precision spacer and washer set for cable machine bolt assembly alignment.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Steel / SS</span></li><li><span class="k">Sizes</span><span class="v">M6 / M8 / M10 / M12</span></li><li><span class="k">Pack</span><span class="v">Various quantities</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;插销参数.png" alt="Weight Stack Safety Pin" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Weight Stack Safety Pin</div>
+          <p class="product-desc">Weight stack selector pin with coiled lanyard. Anti-loss design.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Steel</span></li><li><span class="k">Type</span><span class="v">Spring Detent Pin</span></li><li><span class="k">Lanyard</span><span class="v">Included</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;负重托盘1.png" alt="Weight Selector Plate" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Weight Selector Plate</div>
+          <p class="product-desc">Cable machine weight selector plate for standard weight stack assemblies.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Steel</span></li><li><span class="k">Compatibility</span><span class="v">Universal Weight Stack</span></li><li><span class="k">Finish</span><span class="v">Powder-Coated</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/健身配件SKU英文&mdash;拉把&mdash;png" alt="Cable Pull Handle" loading="lazy" />
+          <div class="product-img-overlay"></div><span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cable Pull Handle</div>
+          <p class="product-desc">Ergonomic pull handle for cable machine attachment. Rubberized non-slip grip.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Steel + Rubber Grip</span></li><li><span class="k">Connection</span><span class="v">Snap Hook / Carabiner</span></li><li><span class="k">MOQ</span><span class="v">50 pcs</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="D:/国际站图&mdash;健身/健身SKU&mdash;健身配件SKU(英文)/链条.png" alt="Steel Chain" loading="lazy" />
+          <div class="product-img-overlay"></div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Steel Chain</div>
+          <p class="product-desc">Heavy-duty steel chain for weighted exercise or gym equipment cable rigging.</p>
+          <ul class="product-specs"><li><span class="k">Material</span><span class="v">Carbon Steel</span></li><li><span class="k">Link Size</span><span class="v">Custom</span></li><li><span class="k">Finish</span><span class="v">Black Oxide / Chrome</span></li></ul>
+          <div class="card-actions"><a href="index.html#inquiry" class="btn-quote">Get Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-banner">
+    <h3>Need a <em>Custom</em> Fitting or Assembly?</h3>
+    <p>Send your drawings, samples, or specs &mdash;we'll quote within 1 business hour.</p>
+    <div class="cta-actions">
+      <a href="index.html#inquiry" class="btn-primary">Request a Quote &mdash;/a>
+      <a href="index.html" class="btn-secondary">View Gym Cables</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">YONG<span>RUI</span></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#products">Gym Cable</a>
+      <a href="fittings.html">Fittings</a>
+      <a href="index.html#inquiry">Contact</a>
+    </div>
+    <div style="display:flex;gap:.6rem">
+      <span class="cert-pill">ISO 9001</span>
+      <span class="cert-pill">RoHS</span>
+    </div>
+    <p class="footer-copy">© 2026 Yongrui Metal Products · Shanghai, China</p>
+  </div>
+</footer>
+
+<script>
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.category-block').forEach(el => {
+    el.style.display = (cat === 'all' || el.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

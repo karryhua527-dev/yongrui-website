@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog &mdash; Yongrui Steel Wire Rope</title>
+  <meta name="description" content="Expert guides on gym cable maintenance, safety inspection, and product selection from the YONGRUI engineering team." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
+      --border:#2a2a2a;--orange:#FF6B00;--text:#f0f0f0;--muted:#888;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);line-height:1.6}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:64px;background:rgba(10,10,10,.96);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo img{height:44px;width:auto}
+    .nav-logo span{font-size:1.15rem;font-weight:800;letter-spacing:1px;color:#fff}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav-cta{background:var(--orange);color:#fff!important;padding:9px 20px;border-radius:8px;font-weight:700!important}
+
+    /* HEADER */
+    .blog-header{text-align:center;padding:72px 40px 56px;border-bottom:1px solid var(--border)}
+    .section-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;
+      color:var(--orange);margin-bottom:16px}
+    .blog-header h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;letter-spacing:-1px;margin-bottom:16px}
+    .blog-header p{color:var(--muted);font-size:1rem;max-width:540px;margin:0 auto}
+
+    /* GRID */
+    .blog-grid{max-width:1100px;margin:0 auto;padding:64px 40px 100px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+    /* CARD */
+    .blog-card{background:var(--dark2);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+      display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+    .blog-card:hover{border-color:rgba(255,107,0,.4);transform:translateY(-4px)}
+    .blog-card-img{height:200px;background:var(--dark3);display:flex;align-items:center;justify-content:center}
+    .blog-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+    .blog-card-cat{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+      color:var(--orange);margin-bottom:10px}
+    .blog-card-title{font-size:1rem;font-weight:800;color:#fff;line-height:1.4;margin-bottom:12px}
+    .blog-card-excerpt{font-size:.85rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:16px}
+    .blog-card-meta{font-size:.75rem;color:#666;margin-bottom:16px}
+    .blog-card-link{font-size:.85rem;font-weight:700;color:var(--orange);text-decoration:none}
+    .blog-card-link:hover{text-decoration:underline}
+
+    /* FOOTER */
+    footer{background:var(--black);border-top:1px solid var(--border);padding:40px;text-align:center}
+    footer p{color:var(--muted);font-size:.85rem}
+
+    @media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){
+      .nav{padding:0 20px}
+      .blog-header{padding:48px 20px 40px}
+      .blog-grid{grid-template-columns:1fr;padding:40px 20px 80px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui" />
+    <span>YONGRUI</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#products">Products</a>
+    <a href="gym-cable.html">Cable Builder</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="index.html#quote" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="blog-header">
+  <div class="section-label">Knowledge Base</div>
+  <h1>Engineering Insights</h1>
+  <p>Expert guides on gym cable safety, maintenance protocols, and product selection &mdash; from the YONGRUI engineering team.</p>
+</div>
+
+<!-- BLOG GRID -->
+<div class="blog-grid">
+
+  <!-- Article 1 -->
+  <div class="blog-card">
+    <div class="blog-card-img" style="background:url('https://sc01.alicdn.com/kf/H8ba0ffa96a334f50aa25436d95afa4f8V.webp') bottom/cover no-repeat"></div>
+    <div class="blog-card-body">
+      <div class="blog-card-cat">Safety &amp; Maintenance</div>
+      <div class="blog-card-title">3 Essential Inspection Steps to Prevent Catastrophic Gym Cable Failure</div>
+      <div class="blog-card-excerpt">Learn the 3 professional inspection protocols to identify gym cable failure before it causes injury &mdash; coating integrity, bird-caging, and terminal checks.</div>
+      <div class="blog-card-meta">YONGRUI Engineering Team &nbsp;&middot;&nbsp; April 2026 &nbsp;&middot;&nbsp; 5 min read</div>
+      <a href="blog-post-1.html" class="blog-card-link">Read Article &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Article 2 -->
+  <div class="blog-card">
+    <div class="blog-card-img" style="background:#1a1a1a url('https://sc01.alicdn.com/kf/H892bb3642f95462db2698fff23b577e2T.png') center/contain no-repeat"></div>
+    <div class="blog-card-body">
+      <div class="blog-card-cat">Buyer's Guide</div>
+      <div class="blog-card-title">7&times;7 vs 7&times;19 Wire Rope: Which Structure is Best for Commercial Gym Equipment?</div>
+      <div class="blog-card-excerpt">A complete technical comparison &mdash; flexibility, fatigue resistance, coating adhesion, and failure modes &mdash; to help you specify the right cable for your machines.</div>
+      <div class="blog-card-meta">YONGRUI Engineering Team &nbsp;&middot;&nbsp; April 2026 &nbsp;&middot;&nbsp; 6 min read</div>
+      <a href="blog-post-2.html" class="blog-card-link">Read Article &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Article 3 -->
+  <div class="blog-card">
+    <div class="blog-card-img" style="background:#1a1a1a url('https://sc01.alicdn.com/kf/H0dfb12caed4e449e87e016b20067328bT.png') center/contain no-repeat"></div>
+    <div class="blog-card-body">
+      <div class="blog-card-cat">Sourcing Guide</div>
+      <div class="blog-card-title">Custom Gym Cable Assembly: The Complete Guide to End-Fittings &amp; Ordering</div>
+      <div class="blog-card-excerpt">Ball shanks, eyelets, threaded studs, swaging &mdash; everything you need to specify and order factory-direct custom cable assemblies that fit your machines perfectly.</div>
+      <div class="blog-card-meta">YONGRUI Engineering Team &nbsp;&middot;&nbsp; April 2026 &nbsp;&middot;&nbsp; 7 min read</div>
+      <a href="blog-post-3.html" class="blog-card-link">Read Article &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Shanghai Yongrui Metal Products Co., Ltd. &nbsp;|&nbsp; <a href="mailto:info@yrsteelwirerope.com" style="color:var(--orange)">info@yrsteelwirerope.com</a></p>
+</footer>
+
+</body>
+</html>

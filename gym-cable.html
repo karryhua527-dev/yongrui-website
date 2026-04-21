@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Cable Builder &mdash;Yongrui</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
+      --border:#2a2a2a;--orange:#FF6B00;--orange-light:#ff8c33;
+      --text:#f0f0f0;--muted:#777;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);min-height:100vh}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:64px;background:rgba(10,10,10,.96);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo img{height:44px;width:auto}
+    .nav-logo span{font-size:1.15rem;font-weight:800;letter-spacing:1px;color:#fff}
+    .nav-back{color:var(--muted);font-size:.85rem;text-decoration:none;
+      display:flex;align-items:center;gap:5px;transition:color .2s}
+    .nav-back:hover{color:var(--orange)}
+
+    /* LAYOUT */
+    .page{max-width:1000px;margin:0 auto;padding:44px 24px 80px}
+    .page-title{font-size:1.9rem;font-weight:800;margin-bottom:6px}
+    .page-sub{color:var(--muted);font-size:.9rem;margin-bottom:40px}
+
+    /* ── PREVIEW ── */
+    .preview{background:#fff;border:1px solid #e0e0e0;border-radius:18px;padding:30px 20px 20px;margin-bottom:40px;position:relative}
+    canvas#rope-canvas{width:100%;height:180px;display:block}
+    .rope-tag-box{text-align:center;margin-top:10px}
+    .rope-tag{font-size:.68rem;color:#888;font-family:'Inter',sans-serif;
+      background:#f5f5f5;border:1px solid #e0e0e0;border-radius:20px;
+      padding:3px 14px;white-space:nowrap}
+    .rope-tag{font-size:.68rem;color:#888;font-family:'Inter',sans-serif;
+      background:#f5f5f5;border:1px solid #e0e0e0;border-radius:20px;
+      padding:3px 14px;white-space:nowrap}
+
+    /* ── SELECTORS ── */
+    .fitting-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:40px}
+    .sec-title{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:14px}
+    .fitting-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .fit-card{border:1px solid var(--border);border-radius:10px;background:var(--dark3);padding:12px 6px;cursor:pointer;transition:all .2s;text-align:center}
+    .fit-card:hover{border-color:rgba(255,107,0,.45)}
+    .fit-card.active{border-color:var(--orange);background:rgba(255,107,0,.09)}
+    .fit-card img{width:80px;height:52px;object-fit:contain;display:block;margin:0 auto 6px}
+    .fit-card span{font-size:.64rem;font-weight:600;color:var(--muted);line-height:1.3;display:block}
+    .fit-card.active span{color:var(--orange)}
+
+    /* CHIPS & COLORS */
+    .sec{margin-bottom:36px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 15px;border-radius:8px;border:1px solid var(--border);background:var(--dark3);color:var(--muted);font-size:.83rem;font-weight:600;cursor:pointer;transition:all .2s}
+    .chip.active{border-color:var(--orange);background:rgba(255,107,0,.11);color:var(--orange)}
+    .swatches{display:flex;flex-wrap:wrap;gap:12px}
+    .sw-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+    .sw{width:28px;height:28px;border-radius:50%;border:2px solid transparent;transition:all .2s}
+    .sw-wrap.active .sw{border-color:var(--orange);transform:scale(1.15)}
+    .sw-wrap span{font-size:.6rem;color:var(--muted)}
+
+    /* QUOTE BOX */
+    .quote-box{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:30px}
+    .q-summary{background:var(--dark3);border-radius:10px;padding:16px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+    .q-row{display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid var(--border)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+    .fg{display:flex;flex-direction:column;gap:5px}
+    .fg label{font-size:.72rem;font-weight:600;color:var(--muted)}
+    .fg input,.fg textarea{background:var(--dark1);border:1px solid var(--border);border-radius:7px;padding:10px 12px;color:var(--text);font-size:.86rem;font-family:inherit;width:100%}
+    .btn-send{width:100%;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:9px;font-weight:800;font-size:1rem;cursor:pointer}
+
+    @media(max-width:768px){
+      .fitting-cols{grid-template-columns:1fr}
+      .fitting-grid{grid-template-columns:repeat(3,1fr)}
+      .form-grid{grid-template-columns:1fr}
+      .q-summary{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui" />
+    <span>YONGRUI</span>
+  </a>
+  <a href="index.html" class="nav-back">&#8592; Back to Home</a>
+</nav>
+
+<div class="page">
+  <div class="page-title">Gym Cable Builder</div>
+  <div class="page-sub">Custom configuration &mdash; Pick your specification and end fittings.</div>
+
+  <!-- ── PREVIEW ── -->
+  <div class="preview">
+    <canvas id="rope-canvas"></canvas>
+    <div class="rope-tag-box">
+      <span class="rope-tag" id="rope-tag">TPU &middot; 2.4/4mm &middot; Black</span>
+    </div>
+  </div>
+
+  <!-- ── FITTINGS ── -->
+  <div class="fitting-cols">
+    <div>
+      <div class="sec-title">Left End</div>
+      <div class="fitting-grid" id="grid-left">
+        <div class="fit-card active" data-side="left" data-val="Fork Terminal" data-img="https://sc01.alicdn.com/kf/Ac480d981130649ae9c48df58b1ca05b3b.png">
+          <img src="https://sc01.alicdn.com/kf/Ac480d981130649ae9c48df58b1ca05b3b.png" /><span>Fork</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Thread Terminal" data-img="https://sc01.alicdn.com/kf/A489b1f538b3a4872a08ba6ab4fa781c8F.png">
+          <img src="https://sc01.alicdn.com/kf/A489b1f538b3a4872a08ba6ab4fa781c8F.png" /><span>Thread</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bolt Terminal" data-img="https://sc01.alicdn.com/kf/A870caf2627ff4ea6b70838a650c66550q.png">
+          <img src="https://sc01.alicdn.com/kf/A870caf2627ff4ea6b70838a650c66550q.png" /><span>Bolt</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Ball+Eye" data-img="https://sc01.alicdn.com/kf/A4e0b58329c874b7a8ed1103c564c4722t.png">
+          <img src="https://sc01.alicdn.com/kf/A4e0b58329c874b7a8ed1103c564c4722t.png" /><span>Ball+Eye</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bolt 2" data-img="https://sc01.alicdn.com/kf/A9589ba6455bf40d6810e33162307c5e0Q.png">
+          <img src="https://sc01.alicdn.com/kf/A9589ba6455bf40d6810e33162307c5e0Q.png" /><span>Bolt 2</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Large Fork" data-img="https://sc01.alicdn.com/kf/A15206b1ca52a4882ab2da20ddd94a632p.png">
+          <img src="https://sc01.alicdn.com/kf/A15206b1ca52a4882ab2da20ddd94a632p.png" /><span>L Fork</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Eye Terminal" data-img="https://sc01.alicdn.com/kf/Aa72bd30300344beb8a32fdb362db023cH.png">
+          <img src="https://sc01.alicdn.com/kf/Aa72bd30300344beb8a32fdb362db023cH.png" /><span>Eye</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Ball+Eye 2" data-img="https://sc01.alicdn.com/kf/A10797125688743d7842fb23cf60c8f0eh.png">
+          <img src="https://sc01.alicdn.com/kf/A10797125688743d7842fb23cf60c8f0eh.png" /><span>Ball+Eye 2</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">Right End</div>
+      <div class="fitting-grid" id="grid-right">
+        <div class="fit-card" data-side="right" data-val="Fork Terminal" data-img="https://sc01.alicdn.com/kf/Ac480d981130649ae9c48df58b1ca05b3b.png">
+          <img src="https://sc01.alicdn.com/kf/Ac480d981130649ae9c48df58b1ca05b3b.png" /><span>Fork</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Thread Terminal" data-img="https://sc01.alicdn.com/kf/A489b1f538b3a4872a08ba6ab4fa781c8F.png">
+          <img src="https://sc01.alicdn.com/kf/A489b1f538b3a4872a08ba6ab4fa781c8F.png" /><span>Thread</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bolt Terminal" data-img="https://sc01.alicdn.com/kf/A870caf2627ff4ea6b70838a650c66550q.png">
+          <img src="https://sc01.alicdn.com/kf/A870caf2627ff4ea6b70838a650c66550q.png" /><span>Bolt</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Ball+Eye" data-img="https://sc01.alicdn.com/kf/A4e0b58329c874b7a8ed1103c564c4722t.png">
+          <img src="https://sc01.alicdn.com/kf/A4e0b58329c874b7a8ed1103c564c4722t.png" /><span>Ball+Eye</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bolt 2" data-img="https://sc01.alicdn.com/kf/A9589ba6455bf40d6810e33162307c5e0Q.png">
+          <img src="https://sc01.alicdn.com/kf/A9589ba6455bf40d6810e33162307c5e0Q.png" /><span>Bolt 2</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Large Fork" data-img="https://sc01.alicdn.com/kf/A15206b1ca52a4882ab2da20ddd94a632p.png">
+          <img src="https://sc01.alicdn.com/kf/A15206b1ca52a4882ab2da20ddd94a632p.png" /><span>L Fork</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Eye Terminal" data-img="https://sc01.alicdn.com/kf/Aa72bd30300344beb8a32fdb362db023cH.png">
+          <img src="https://sc01.alicdn.com/kf/Aa72bd30300344beb8a32fdb362db023cH.png" /><span>Eye</span>
+        </div>
+        <div class="fit-card active" data-side="right" data-val="Ball+Eye 2" data-img="https://sc01.alicdn.com/kf/A10797125688743d7842fb23cf60c8f0eh.png">
+          <img src="https://sc01.alicdn.com/kf/A10797125688743d7842fb23cf60c8f0eh.png" /><span>Ball+Eye 2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CABLE SPEC ── -->
+  <div class="sec">
+    <div class="sec-title">Coating Material</div>
+    <div class="chips" data-group="coating">
+      <div class="chip active" data-val="TPU">TPU &mdash; from $0.37/m &nbsp;·&nbsp; 100K&ndash;150K cycles</div>
+      <div class="chip" data-val="Nylon">Nylon &mdash; from $1.03/m &nbsp;·&nbsp; up to 500K cycles</div>
+      <div class="chip" data-val="Pro Nylon">Pro Nylon (PA12) &mdash; from $0.78/m &nbsp;·&nbsp; up to 1M cycles</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Diameter (Steel Core / OD)</div>
+    <div class="chips" data-group="diameter">
+      <div class="chip active" data-val="2.4/4mm">7×7 &nbsp; Ø2.4/4 mm</div>
+      <div class="chip" data-val="3.18/4.8mm">7×19 &nbsp; Ø3.18/4.8 mm</div>
+      <div class="chip" data-val="3.97/5.8mm">7×19 &nbsp; Ø3.97/5.8 mm</div>
+      <div class="chip" data-val="4.8/6.35mm">7×19 &nbsp; Ø4.8/6.35 mm</div>
+      <div class="chip" data-val="6/7.8mm">7×19 &nbsp; Ø6/7.8 mm</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Color</div>
+    <div class="swatches">
+      <div class="sw-wrap active" data-val="Black" data-hex="#111"><div class="sw" style="background:#111"></div><span>Black</span></div>
+      <div class="sw-wrap" data-val="Silver" data-hex="#b0b0b0"><div class="sw" style="background:#b0b0b0"></div><span>Silver</span></div>
+      <div class="sw-wrap" data-val="Red" data-hex="#dc2626"><div class="sw" style="background:#dc2626"></div><span>Red</span></div>
+      <div class="sw-wrap" data-val="Orange" data-hex="#FF6B00"><div class="sw" style="background:#FF6B00"></div><span>Orange</span></div>
+    </div>
+  </div>
+
+  <!-- ── QUOTE ── -->
+  <div class="quote-box">
+    <div class="q-summary">
+      <div class="q-row"><span class="k">Left End</span><span class="v" id="s-left">Fork</span></div>
+      <div class="q-row"><span class="k">Right End</span><span class="v" id="s-right">Ball+Eye 2</span></div>
+      <div class="q-row"><span class="k">Coating</span><span class="v" id="s-coating">TPU</span></div>
+      <div class="q-row"><span class="k">Diameter</span><span class="v" id="s-diameter">2.4/4mm</span></div>
+      <div class="q-row"><span class="k">Length</span><span class="v" id="s-len">&mdash;</span></div>
+    </div>
+    <div class="form-grid">
+      <div class="fg"><label>Length (mm) *</label><input type="number" id="f-len" placeholder="e.g. 2400" /></div>
+      <div class="fg"><label>Quantity *</label><input type="number" id="f-qty" placeholder="e.g. 100" /></div>
+      <div class="fg"><label>Name *</label><input type="text" id="f-name" /></div>
+      <div class="fg"><label>Email *</label><input type="email" id="f-email" /></div>
+    </div>
+    <button class="btn-send" id="btn-send">Send Inquiry &rarr;</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('rope-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  const state = {
+    left:     'Fork Terminal',
+    right:    'Ball+Eye 2',
+    coating:  'TPU',
+    diameter: '2.4/4mm',
+    color:    '#111'
+  };
+
+  /* ── Fitting image config ──────────────────────────────────────────────
+     Each alicdn image is 1024×1024, fitting head on the RIGHT,
+     cable tail exits from the LEFT edge.
+     renderW : how wide to draw this fitting on canvas (px at 1x)
+     tailFrac: the tail exits the LEFT edge of the source image at this
+               fraction of rendered width from left.  After mirroring
+               the left fitting, the tail will exit from the RIGHT at
+               renderW*(1-tailFrac) from the left slot origin.
+  ─────────────────────────────────────────────────────────────────────── */
+  const FIT = {
+    'Fork Terminal':   { w:200, tailFrac:0.06 },
+    'Thread Terminal': { w:210, tailFrac:0.05 },
+    'Bolt Terminal':   { w:210, tailFrac:0.05 },
+    'Ball+Eye':        { w:185, tailFrac:0.06 },
+    'Bolt 2':          { w:210, tailFrac:0.05 },
+    'Large Fork':      { w:215, tailFrac:0.05 },
+    'Eye Terminal':    { w:210, tailFrac:0.05 },
+    'Ball+Eye 2':      { w:185, tailFrac:0.06 },
+  };
+  const DEF = { w:200, tailFrac:0.06 };
+
+  /* ── Image loader ─────────────────────────────────────────────────── */
+  const imgCache = {};   // url → HTMLImageElement (loaded)
+  let   pending  = 0;
+
+  function loadImg(url, cb){
+    if(imgCache[url]){ cb(imgCache[url]); return; }
+    const im = new Image();
+    im.crossOrigin = 'anonymous';
+    im.onload  = () => { imgCache[url] = im; cb(im); };
+    im.onerror = () => {
+      // CORS blocked (file:// protocol) — draw without this image
+      imgCache[url] = null;
+      cb(null);
+    };
+    im.src = url;
+  }
+
+  /* ── Draw ─────────────────────────────────────────────────────────── */
+  function draw(){
+    const dpr  = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    const W    = rect.width;
+    const H    = 180;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    const CY = H / 2;
+    const IH = 160;   // rendered image height
+
+    const cfgL = FIT[state.left]  || DEF;
+    const cfgR = FIT[state.right] || DEF;
+
+    // Left fitting occupies [0 .. cfgL.w], drawn mirrored.
+    // After flip, its tail exits at x = cfgL.w*(1-tailFrac)
+    const leftTailX  = cfgL.w * (1 - cfgL.tailFrac);
+
+    // Right fitting occupies [W-cfgR.w .. W], drawn normally.
+    // Tail exits at x = (W-cfgR.w) + cfgR.w*tailFrac
+    const rightSlotX = W - cfgR.w;
+    const rightTailX = rightSlotX + cfgR.w * cfgR.tailFrac;
+
+    // ── 1. Rope line (behind everything) ──────────────────────────────
+    const ropeColor = (state.color === '#ffffff' || state.color === '#f8f8f8')
+                      ? '#aaa' : state.color;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(leftTailX,  CY);
+    ctx.lineTo(rightTailX, CY);
+    ctx.lineWidth   = 6;
+    ctx.strokeStyle = ropeColor;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+    ctx.restore();
+
+    // ── 2. Left fitting (mirrored around its slot) ─────────────────────
+    const imL = imgCache[state._imgLeft];
+    if(imL){
+      ctx.save();
+      ctx.translate(cfgL.w, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(imL, 0, CY - IH/2, cfgL.w, IH);
+      ctx.restore();
+    } else {
+      // Fallback: draw a simple rectangle + label
+      ctx.save();
+      ctx.fillStyle = '#ddd';
+      ctx.fillRect(0, CY - 18, cfgL.w * 0.6, 36);
+      ctx.fillStyle = '#999';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(state.left, cfgL.w * 0.3, CY + 4);
+      ctx.restore();
+    }
+
+    // ── 3. Right fitting (normal) ──────────────────────────────────────
+    const imR = imgCache[state._imgRight];
+    if(imR){
+      ctx.drawImage(imR, rightSlotX, CY - IH/2, cfgR.w, IH);
+    } else {
+      ctx.save();
+      ctx.fillStyle = '#ddd';
+      ctx.fillRect(W - cfgR.w * 0.6, CY - 18, cfgR.w * 0.6, 36);
+      ctx.fillStyle = '#999';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(state.right, W - cfgR.w * 0.3, CY + 4);
+      ctx.restore();
+    }
+
+    // ── 4. Labels ──────────────────────────────────────────────────────
+    ctx.fillStyle = '#FF6B00';
+    ctx.font      = 'bold 11px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(state.left,  cfgL.w / 2,        CY + IH/2 + 16);
+    ctx.fillText(state.right, W - cfgR.w / 2,    CY + IH/2 + 16);
+  }
+
+  function redraw(){
+    // Ensure both images are loaded before drawing
+    let loaded = 0;
+    const check = () => { if(++loaded === 2) draw(); };
+    loadImg(state._imgLeft,  check);
+    loadImg(state._imgRight, check);
+  }
+
+  window.addEventListener('resize', draw);
+
+  /* ── Helpers ──────────────────────────────────────────────────────── */
+  const colorNames = {
+    '#111':'Black','#b0b0b0':'Silver','#dc2626':'Red','#FF6B00':'Orange'
+  };
+
+  function updateTag(){
+    const c = colorNames[state.color] || state.color;
+    document.getElementById('rope-tag').textContent =
+      `${state.coating} \u00b7 ${state.diameter} \u00b7 ${c}`;
+  }
+
+  /* ── Event listeners ──────────────────────────────────────────────── */
+  document.querySelectorAll('.fit-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const side = card.dataset.side;
+      document.querySelectorAll(`.fit-card[data-side="${side}"]`).forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state[side] = card.dataset.val;
+      if(side === 'left')  state._imgLeft  = card.dataset.img;
+      else                 state._imgRight = card.dataset.img;
+      document.getElementById('s-'+side).textContent = card.dataset.val;
+      redraw();
+    });
+  });
+
+  document.querySelectorAll('[data-group="coating"] .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-group="coating"] .chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.coating = chip.dataset.val;
+      document.getElementById('s-coating').textContent = chip.dataset.val;
+      updateTag();
+    });
+  });
+
+  document.querySelectorAll('[data-group="diameter"] .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-group="diameter"] .chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.diameter = chip.dataset.val;
+      document.getElementById('s-diameter').textContent = chip.dataset.val;
+      updateTag();
+    });
+  });
+
+  document.querySelectorAll('.sw-wrap').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.sw-wrap').forEach(s=>s.classList.remove('active'));
+      sw.classList.add('active');
+      state.color = sw.dataset.hex;
+      updateTag();
+      draw();
+    });
+  });
+
+  document.getElementById('f-len').addEventListener('input', function(){
+    document.getElementById('s-len').textContent = this.value ? this.value+' mm' : '\u2014';
+  });
+
+  document.getElementById('btn-send').addEventListener('click', () => {
+    const nm  = document.getElementById('f-name')?.value || '';
+    const ln  = document.getElementById('s-len').textContent;
+    const qty = document.getElementById('f-qty')?.value  || '';
+    const subject = encodeURIComponent(
+      `Gym Cable Inquiry \u2014 ${state.coating} \u00b7 \u00d8${state.diameter} \u00b7 ${state.left}/${state.right}`
+    );
+    const body = encodeURIComponent(
+      `Hi Yongrui Team,\n\nI would like to request a quote for a custom gym cable:\n\n`+
+      `Coating: ${state.coating}\nDiameter: ${state.diameter}\n`+
+      `Left End: ${state.left}\nRight End: ${state.right}\n`+
+      `Length: ${ln}\nColor: ${colorNames[state.color]||state.color}\nQuantity: ${qty}\n\n`+
+      `Name: ${nm}\n\nPlease send pricing and lead time. Thank you!`
+    );
+    window.location.href = `mailto:info@yrsteelwirerope.com?subject=${subject}&body=${body}`;
+  });
+
+  /* ── Init ─────────────────────────────────────────────────────────── */
+  // Set initial image URLs from the default active fit-cards
+  const defLeft  = document.querySelector('.fit-card.active[data-side="left"]');
+  const defRight = document.querySelector('.fit-card.active[data-side="right"]');
+  state._imgLeft  = defLeft  ? defLeft.dataset.img  : 'https://sc01.alicdn.com/kf/Ac480d981130649ae9c48df58b1ca05b3b.png';
+  state._imgRight = defRight ? defRight.dataset.img : 'https://sc01.alicdn.com/kf/A10797125688743d7842fb23cf60c8f0eh.png';
+
+  updateTag();
+  redraw();
+})();
+</script>
+</body>
+</html>

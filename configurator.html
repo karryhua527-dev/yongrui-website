@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Cable Configurator &mdash;Yongrui</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
+      --border:#2a2a2a;--orange:#FF6B00;--orange-light:#ff8c33;
+      --text:#f0f0f0;--muted:#888;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);min-height:100vh}
+
+    /* ── NAV ── */
+    .nav{display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:64px;background:rgba(10,10,10,.95);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo img{height:44px;width:auto}
+    .nav-logo span{font-size:1.2rem;font-weight:800;letter-spacing:1px;color:#fff}
+    .nav-back{color:var(--muted);font-size:.88rem;text-decoration:none;
+      display:flex;align-items:center;gap:6px;transition:color .2s}
+    .nav-back:hover{color:var(--orange)}
+
+    /* ── PAGE LAYOUT ── */
+    .page{max-width:1100px;margin:0 auto;padding:48px 24px 80px}
+    .page-title{font-size:2rem;font-weight:800;margin-bottom:6px}
+    .page-sub{color:var(--muted);font-size:.95rem;margin-bottom:40px}
+
+    /* ── ROPE PREVIEW ── */
+    .preview-box{background:#f8f8f8;border-radius:16px;padding:32px 24px 20px;
+      margin-bottom:36px;position:relative}
+    .preview-length-label{position:absolute;top:12px;left:50%;transform:translateX(-50%);
+      font-size:.72rem;font-weight:700;color:#999;letter-spacing:.5px;font-family:'Inter',sans-serif}
+    .rope-row{display:flex;align-items:center;gap:0;min-height:100px}
+    .end-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;width:130px}
+    .end-img{height:80px;width:130px;object-fit:contain}
+    .end-img.flip{transform:scaleX(-1)}
+    .end-label{font-size:.72rem;font-weight:700;color:var(--orange);
+      font-family:'Inter',sans-serif;text-align:center;max-width:110px}
+    .rope-mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+    .rope-img{width:100%;height:48px;object-fit:fill}
+    .rope-spec-tag{font-size:.7rem;color:#aaa;font-family:'Inter',sans-serif;
+      background:#fff;border:1px solid #e5e5e5;border-radius:20px;
+      padding:3px 12px;white-space:nowrap}
+    /* color swatch overlay on rope */
+    .rope-color-bar{height:6px;border-radius:3px;width:80%;margin:2px auto 0;opacity:.7}
+
+    /* ── SECTION LABEL ── */
+    .sec-label{font-size:.72rem;font-weight:700;text-transform:uppercase;
+      letter-spacing:1px;color:var(--muted);margin-bottom:12px}
+
+    /* ── FITTING GRID ── */
+    .fitting-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:36px}
+    .fitting-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .fitting-card{border:1px solid var(--border);border-radius:10px;background:var(--dark3);
+      padding:12px 6px 10px;cursor:pointer;transition:all .2s;text-align:center}
+    .fitting-card:hover{border-color:rgba(255,107,0,.5);background:rgba(255,107,0,.04)}
+    .fitting-card.active{border-color:var(--orange);background:rgba(255,107,0,.1)}
+    .fitting-card img{width:80px;height:52px;object-fit:contain;display:block;margin:0 auto 8px}
+    .fitting-card span{font-size:.68rem;font-weight:600;color:var(--muted);
+      line-height:1.3;display:block}
+    .fitting-card.active span{color:var(--orange)}
+
+    /* ── SPEC CHIPS ── */
+    .spec-row{display:flex;flex-wrap:wrap;gap:32px;margin-bottom:36px}
+    .spec-group{display:flex;flex-direction:column;gap:10px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--dark3);
+      color:var(--muted);font-size:.84rem;font-weight:600;cursor:pointer;
+      transition:all .2s;user-select:none;white-space:nowrap}
+    .chip:hover{border-color:rgba(255,107,0,.4);color:var(--text)}
+    .chip.active{border-color:var(--orange);background:rgba(255,107,0,.12);color:var(--orange)}
+
+    /* ── COLOR SWATCHES ── */
+    .swatches{display:flex;flex-wrap:wrap;gap:10px}
+    .swatch-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+    .swatch{width:32px;height:32px;border-radius:50%;border:3px solid transparent;
+      transition:all .2s}
+    .swatch-wrap.active .swatch{border-color:var(--orange);transform:scale(1.2)}
+    .swatch-wrap span{font-size:.62rem;color:var(--muted);font-weight:600}
+
+    /* ── QUOTE BOX ── */
+    .quote-box{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:32px}
+    .quote-title{font-size:1.2rem;font-weight:800;margin-bottom:20px}
+    .quote-summary{background:var(--dark3);border-radius:10px;padding:16px;
+      margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+    .q-row{display:flex;justify-content:space-between;font-size:.82rem;line-height:1.9;
+      border-bottom:1px solid var(--border);padding-bottom:4px}
+    .q-row:last-child{border-bottom:none}
+    .q-row .k{color:var(--muted)}
+    .q-row .v{font-weight:600}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+    .fg{display:flex;flex-direction:column;gap:5px}
+    .fg label{font-size:.75rem;font-weight:600;color:var(--muted)}
+    .fg input,.fg textarea{background:var(--dark1);border:1px solid var(--border);
+      border-radius:7px;padding:10px 13px;color:var(--text);font-size:.88rem;
+      font-family:'Inter',sans-serif;width:100%;transition:border-color .2s}
+    .fg input:focus,.fg textarea:focus{outline:none;border-color:var(--orange)}
+    .fg.full{grid-column:1/-1}
+    .btn-submit{width:100%;padding:15px;background:var(--orange);color:#fff;border:none;
+      border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer;
+      transition:background .2s;margin-top:4px}
+    .btn-submit:hover{background:var(--orange-light)}
+    .note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6}
+
+    @media(max-width:768px){
+      .fitting-cols{grid-template-columns:1fr}
+      .fitting-grid{grid-template-columns:repeat(3,1fr)}
+      .spec-row{gap:20px}
+      .form-grid{grid-template-columns:1fr}
+      .quote-summary{grid-template-columns:1fr}
+      .page{padding:24px 16px 60px}
+      .nav{padding:0 16px}
+      .end-wrap{width:90px}
+      .end-img{width:90px;height:60px}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui" />
+    <span>YONGRUI</span>
+  </a>
+  <a href="index.html" class="nav-back">&#8592; Back to Home</a>
+</nav>
+
+<div class="page">
+  <div class="page-title">Gym Cable Configurator</div>
+  <div class="page-sub">Choose your spec and end fittings &mdash;we'll reply with a quote within 24 hours.</div>
+
+  <!-- ── ROPE PREVIEW ── -->
+  <div class="preview-box">
+    <div class="preview-length-label" id="preview-length-label">Custom Length</div>
+    <div class="rope-row">
+      <div class="end-wrap">
+        <img class="end-img flip" id="img-left"
+          src="https://www.steelropes24.com/media/da/91/5c/1729239430/Schlaufe.svg"
+          alt="Left End" />
+        <div class="end-label" id="label-left">Loop</div>
+      </div>
+      <div class="rope-mid">
+        <img class="rope-img" id="rope-body"
+          src="https://www.steelropes24.com/media/73/d6/71/1729690078/drahtseil-lang0192b.svg"
+          alt="rope" />
+        <div class="rope-color-bar" id="rope-color-bar" style="background:#222"></div>
+        <div class="rope-spec-tag" id="rope-spec-tag">PVC · SS304 · 7×7 · Ø4mm · Black</div>
+      </div>
+      <div class="end-wrap">
+        <img class="end-img" id="img-right"
+          src="https://www.steelropes24.com/media/df/b0/af/1729239433/Kugelterminal.svg"
+          alt="Right End" />
+        <div class="end-label" id="label-right">Ball Terminal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── END FITTINGS ── -->
+  <div class="fitting-cols">
+    <div>
+      <div class="sec-label">Left End &mdash;Drive Side</div>
+      <div class="fitting-grid" id="grid-left">
+        <div class="fitting-card" data-side="left" data-val="Clean Cut"
+          data-img="https://www.steelropes24.com/media/98/f4/bb/1729239431/Stopper.svg">
+          <img src="https://www.steelropes24.com/media/98/f4/bb/1729239431/Stopper.svg" alt="Clean Cut"/>
+          <span>Clean Cut</span>
+        </div>
+        <div class="fitting-card active" data-side="left" data-val="Loop"
+          data-img="https://www.steelropes24.com/media/da/91/5c/1729239430/Schlaufe.svg">
+          <img src="https://www.steelropes24.com/media/da/91/5c/1729239430/Schlaufe.svg" alt="Loop"/>
+          <span>Loop</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Thimble"
+          data-img="https://www.steelropes24.com/media/01/4d/12/1729239431/Kausche.svg">
+          <img src="https://www.steelropes24.com/media/01/4d/12/1729239431/Kausche.svg" alt="Thimble"/>
+          <span>Thimble</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Ball Terminal"
+          data-img="https://www.steelropes24.com/media/df/b0/af/1729239433/Kugelterminal.svg">
+          <img src="https://www.steelropes24.com/media/df/b0/af/1729239433/Kugelterminal.svg" alt="Ball Terminal"/>
+          <span>Ball Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Eye Terminal"
+          data-img="https://www.steelropes24.com/media/73/0a/26/1729239433/Edelstahl%20%C3%96senterminal.svg">
+          <img src="https://www.steelropes24.com/media/73/0a/26/1729239433/Edelstahl%20%C3%96senterminal.svg" alt="Eye Terminal"/>
+          <span>Eye Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Hook Terminal"
+          data-img="https://www.steelropes24.com/media/16/32/d6/1729239433/Hakenterminal.svg">
+          <img src="https://www.steelropes24.com/media/16/32/d6/1729239433/Hakenterminal.svg" alt="Hook Terminal"/>
+          <span>Hook Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Fork Terminal"
+          data-img="https://www.steelropes24.com/media/08/18/a6/1729239432/Edelstahl%20Gabelterminal.svg">
+          <img src="https://www.steelropes24.com/media/08/18/a6/1729239432/Edelstahl%20Gabelterminal.svg" alt="Fork Terminal"/>
+          <span>Fork Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="left" data-val="Thread Terminal"
+          data-img="https://www.steelropes24.com/media/2c/b7/0e/1729239432/Edelstahl%20Gewindeterminal.svg">
+          <img src="https://www.steelropes24.com/media/2c/b7/0e/1729239432/Edelstahl%20Gewindeterminal.svg" alt="Thread Terminal"/>
+          <span>Thread Terminal</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-label">Right End &mdash;Weight Side</div>
+      <div class="fitting-grid" id="grid-right">
+        <div class="fitting-card" data-side="right" data-val="Clean Cut"
+          data-img="https://www.steelropes24.com/media/98/f4/bb/1729239431/Stopper.svg">
+          <img src="https://www.steelropes24.com/media/98/f4/bb/1729239431/Stopper.svg" alt="Clean Cut"/>
+          <span>Clean Cut</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Loop"
+          data-img="https://www.steelropes24.com/media/da/91/5c/1729239430/Schlaufe.svg">
+          <img src="https://www.steelropes24.com/media/da/91/5c/1729239430/Schlaufe.svg" alt="Loop"/>
+          <span>Loop</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Thimble"
+          data-img="https://www.steelropes24.com/media/01/4d/12/1729239431/Kausche.svg">
+          <img src="https://www.steelropes24.com/media/01/4d/12/1729239431/Kausche.svg" alt="Thimble"/>
+          <span>Thimble</span>
+        </div>
+        <div class="fitting-card active" data-side="right" data-val="Ball Terminal"
+          data-img="https://www.steelropes24.com/media/df/b0/af/1729239433/Kugelterminal.svg">
+          <img src="https://www.steelropes24.com/media/df/b0/af/1729239433/Kugelterminal.svg" alt="Ball Terminal"/>
+          <span>Ball Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Eye Terminal"
+          data-img="https://www.steelropes24.com/media/73/0a/26/1729239433/Edelstahl%20%C3%96senterminal.svg">
+          <img src="https://www.steelropes24.com/media/73/0a/26/1729239433/Edelstahl%20%C3%96senterminal.svg" alt="Eye Terminal"/>
+          <span>Eye Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Hook Terminal"
+          data-img="https://www.steelropes24.com/media/16/32/d6/1729239433/Hakenterminal.svg">
+          <img src="https://www.steelropes24.com/media/16/32/d6/1729239433/Hakenterminal.svg" alt="Hook Terminal"/>
+          <span>Hook Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Fork Terminal"
+          data-img="https://www.steelropes24.com/media/08/18/a6/1729239432/Edelstahl%20Gabelterminal.svg">
+          <img src="https://www.steelropes24.com/media/08/18/a6/1729239432/Edelstahl%20Gabelterminal.svg" alt="Fork Terminal"/>
+          <span>Fork Terminal</span>
+        </div>
+        <div class="fitting-card" data-side="right" data-val="Thread Terminal"
+          data-img="https://www.steelropes24.com/media/2c/b7/0e/1729239432/Edelstahl%20Gewindeterminal.svg">
+          <img src="https://www.steelropes24.com/media/2c/b7/0e/1729239432/Edelstahl%20Gewindeterminal.svg" alt="Thread Terminal"/>
+          <span>Thread Terminal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CABLE SPEC ── -->
+  <div class="spec-row">
+    <div class="spec-group">
+      <div class="sec-label">Coating</div>
+      <div class="chips" data-group="coating">
+        <div class="chip active" data-val="PVC">PVC</div>
+        <div class="chip" data-val="Nylon">Nylon</div>
+        <div class="chip" data-val="PU">PU</div>
+      </div>
+    </div>
+    <div class="spec-group">
+      <div class="sec-label">Core Grade</div>
+      <div class="chips" data-group="core">
+        <div class="chip active" data-val="SS304">SS304</div>
+        <div class="chip" data-val="SS316">SS316</div>
+      </div>
+    </div>
+    <div class="spec-group">
+      <div class="sec-label">Construction</div>
+      <div class="chips" data-group="construction">
+        <div class="chip active" data-val="7×7">7×7</div>
+        <div class="chip" data-val="7×19">7×19</div>
+      </div>
+    </div>
+    <div class="spec-group">
+      <div class="sec-label">Diameter (OD)</div>
+      <div class="chips" data-group="diameter">
+        <div class="chip" data-val="Ø3.2mm">Ø3.2mm</div>
+        <div class="chip active" data-val="Ø4mm">Ø4mm</div>
+        <div class="chip" data-val="Ø5mm">Ø5mm</div>
+        <div class="chip" data-val="Ø6mm">Ø6mm</div>
+        <div class="chip" data-val="Ø8mm">Ø8mm</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COLOR ── -->
+  <div style="margin-bottom:36px">
+    <div class="sec-label">Color</div>
+    <div class="swatches" id="swatches">
+      <div class="swatch-wrap active" data-val="Black" data-hex="#111">
+        <div class="swatch" style="background:#111"></div>
+        <span>Black</span>
+      </div>
+      <div class="swatch-wrap" data-val="Silver" data-hex="#c0c0c0">
+        <div class="swatch" style="background:#c0c0c0"></div>
+        <span>Silver</span>
+      </div>
+      <div class="swatch-wrap" data-val="Red" data-hex="#dc2626">
+        <div class="swatch" style="background:#dc2626"></div>
+        <span>Red</span>
+      </div>
+      <div class="swatch-wrap" data-val="Blue" data-hex="#2563eb">
+        <div class="swatch" style="background:#2563eb"></div>
+        <span>Blue</span>
+      </div>
+      <div class="swatch-wrap" data-val="Green" data-hex="#16a34a">
+        <div class="swatch" style="background:#16a34a"></div>
+        <span>Green</span>
+      </div>
+      <div class="swatch-wrap" data-val="Yellow" data-hex="#ca8a04">
+        <div class="swatch" style="background:#ca8a04"></div>
+        <span>Yellow</span>
+      </div>
+      <div class="swatch-wrap" data-val="Orange" data-hex="#ea580c">
+        <div class="swatch" style="background:#ea580c"></div>
+        <span>Orange</span>
+      </div>
+      <div class="swatch-wrap" data-val="Purple" data-hex="#7c3aed">
+        <div class="swatch" style="background:#7c3aed"></div>
+        <span>Purple</span>
+      </div>
+      <div class="swatch-wrap" data-val="Custom RAL" data-hex="linear-gradient(135deg,#f97316,#ec4899)">
+        <div class="swatch" style="background:linear-gradient(135deg,#f97316,#ec4899)"></div>
+        <span>Custom</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUOTE FORM ── -->
+  <div class="quote-box">
+    <div class="quote-title">Request a Quote</div>
+    <div class="quote-summary" id="quote-summary">
+      <div class="q-row"><span class="k">Left End</span><span class="v" id="s-left">Loop</span></div>
+      <div class="q-row"><span class="k">Right End</span><span class="v" id="s-right">Ball Terminal</span></div>
+      <div class="q-row"><span class="k">Coating</span><span class="v" id="s-coating">PVC</span></div>
+      <div class="q-row"><span class="k">Core</span><span class="v" id="s-core">SS304</span></div>
+      <div class="q-row"><span class="k">Construction</span><span class="v" id="s-construction">7×7</span></div>
+      <div class="q-row"><span class="k">Diameter</span><span class="v" id="s-diameter">Ø4mm</span></div>
+      <div class="q-row"><span class="k">Color</span><span class="v" id="s-color">Black</span></div>
+      <div class="q-row"><span class="k">Length</span><span class="v" id="s-length">&mdash;/span></div>
+      <div class="q-row"><span class="k">Quantity</span><span class="v" id="s-qty">&mdash;/span></div>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Length (mm) *</label>
+        <input type="number" id="f-length" placeholder="e.g. 2400" min="100" />
+      </div>
+      <div class="fg">
+        <label>Quantity (pcs) *</label>
+        <input type="number" id="f-qty" placeholder="e.g. 200" min="1" />
+      </div>
+      <div class="fg">
+        <label>Your Name *</label>
+        <input type="text" id="f-name" placeholder="John Smith" />
+      </div>
+      <div class="fg">
+        <label>Company *</label>
+        <input type="text" id="f-company" placeholder="ACME Fitness Inc." />
+      </div>
+      <div class="fg">
+        <label>Email *</label>
+        <input type="email" id="f-email" placeholder="john@company.com" />
+      </div>
+      <div class="fg">
+        <label>Country *</label>
+        <input type="text" id="f-country" placeholder="United States" />
+      </div>
+      <div class="fg full">
+        <label>Additional Notes</label>
+        <input type="text" id="f-notes" placeholder="Branded packaging, specific RAL color code, test cert required..." />
+      </div>
+    </div>
+    <button class="btn-submit" id="btn-submit">Send Inquiry &mdash;/button>
+    <div class="note">Free samples available &bull; Quote within 24 h &bull; ISO 9001 certified factory</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const state = {
+    left:'Loop', right:'Ball Terminal',
+    coating:'PVC', core:'SS304', construction:'7×7', diameter:'Ø4mm', color:'Black'
+  };
+
+  // ── Fitting cards ──────────────────────────────────────────────────────────
+  document.querySelectorAll('.fitting-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const side = card.dataset.side;
+      document.querySelectorAll(`.fitting-card[data-side="${side}"]`).forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state[side] = card.dataset.val;
+      document.getElementById('img-'+side).src = card.dataset.img;
+      document.getElementById('label-'+side).textContent = card.dataset.val;
+      document.getElementById('s-'+side).textContent = card.dataset.val;
+    });
+  });
+
+  // ── Spec chips ────────────────────────────────────────────────────────────
+  document.querySelectorAll('.chips').forEach(group=>{
+    group.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        const key = group.dataset.group;
+        state[key] = chip.dataset.val;
+        document.getElementById('s-'+key).textContent = chip.dataset.val;
+        updateSpecTag();
+      });
+    });
+  });
+
+  // ── Color swatches ────────────────────────────────────────────────────────
+  document.querySelectorAll('.swatch-wrap').forEach(sw=>{
+    sw.addEventListener('click',()=>{
+      document.querySelectorAll('.swatch-wrap').forEach(s=>s.classList.remove('active'));
+      sw.classList.add('active');
+      state.color = sw.dataset.val;
+      document.getElementById('s-color').textContent = sw.dataset.val;
+      const bar = document.getElementById('rope-color-bar');
+      bar.style.background = sw.dataset.hex.startsWith('linear') ? sw.dataset.hex : sw.dataset.hex;
+      updateSpecTag();
+    });
+  });
+
+  // ── Length / qty live update ───────────────────────────────────────────────
+  document.getElementById('f-length').addEventListener('input', function(){
+    const v = this.value;
+    document.getElementById('s-length').textContent = v ? v+' mm' : '&mdash;;
+    document.getElementById('preview-length-label').textContent = v ? 'Length: '+v+' mm' : 'Custom Length';
+  });
+  document.getElementById('f-qty').addEventListener('input', function(){
+    document.getElementById('s-qty').textContent = this.value ? this.value+' pcs' : '&mdash;;
+  });
+
+  function updateSpecTag(){
+    document.getElementById('rope-spec-tag').textContent =
+      `${state.coating} · ${state.core} · ${state.construction} · ${state.diameter} · ${state.color}`;
+  }
+
+  // ── Submit ─────────────────────────────────────────────────────────────────
+  document.getElementById('btn-submit').addEventListener('click',()=>{
+    const len   = document.getElementById('f-length').value.trim();
+    const qty   = document.getElementById('f-qty').value.trim();
+    const name  = document.getElementById('f-name').value.trim();
+    const co    = document.getElementById('f-company').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const ctry  = document.getElementById('f-country').value.trim();
+    const notes = document.getElementById('f-notes').value.trim();
+
+    if(!len||!qty||!name||!co||!email||!ctry){
+      alert('Please fill in all required fields (*).');
+      return;
+    }
+
+    const subject = encodeURIComponent(
+      `Custom Gym Cable Inquiry &mdash;${state.coating} ${state.diameter} ${state.construction}`
+    );
+    const body = encodeURIComponent(
+`Hi Yongrui Team,
+
+I would like to request a quote for a custom gym cable:
+
+  Left End:      ${state.left}
+  Right End:     ${state.right}
+  Coating:       ${state.coating}
+  Core Grade:    ${state.core}
+  Construction:  ${state.construction}
+  Diameter (OD): ${state.diameter}
+  Color:         ${state.color}
+  Length:        ${len} mm
+  Quantity:      ${qty} pcs
+${notes ? '  Notes:        '+notes : ''}
+
+Contact Details:
+  Name:    ${name}
+  Company: ${co}
+  Email:   ${email}
+  Country: ${ctry}
+
+Please send me a formal quotation and sample lead time. Thank you!`
+    );
+
+    window.location.href = `mailto:info@yrsteelwirerope.com?subject=${subject}&body=${body}`;
+  });
+
+})();
+</script>
+</body>
+</html>

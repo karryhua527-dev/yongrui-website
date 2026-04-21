@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Gym Cable Assembly Guide: End-Fittings, Swaging & Ordering &mdash;Yongrui</title>
+  <meta name="description" content="Complete guide to gym cable end-fittings: ball shanks, eyelets, threaded studs, snap hooks. How to measure, specify, and order factory-direct custom cable assemblies." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
+      --border:#2a2a2a;--orange:#FF6B00;--orange-light:#ff8c33;
+      --text:#f0f0f0;--muted:#888;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);line-height:1.7}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:64px;background:rgba(10,10,10,.96);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo img{height:44px;width:auto}
+    .nav-logo span{font-size:1.15rem;font-weight:800;letter-spacing:1px;color:#fff}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .nav-cta{background:var(--orange);color:#fff!important;padding:9px 20px;border-radius:8px;font-weight:700!important}
+
+    /* HERO */
+    .post-hero{background:url('https://sc01.alicdn.com/kf/H0dfb12caed4e449e87e016b20067328bT.png') center/cover no-repeat;
+      border-bottom:1px solid var(--border);padding:64px 40px 48px;position:relative}
+    .post-hero::before{content:'';position:absolute;inset:0;background:rgba(10,10,10,0.70)}
+    .post-hero .container{position:relative;z-index:1;max-width:800px;margin:0 auto}
+    .breadcrumb{font-size:.8rem;color:var(--muted);margin-bottom:24px}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--orange)}
+    .breadcrumb span{margin:0 8px}
+    .post-category{display:inline-block;background:var(--orange);color:#fff;font-size:.72rem;font-weight:700;
+      text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+    .post-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:20px}
+    .post-title span{color:var(--orange)}
+    .post-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .post-meta-item{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted)}
+    .post-meta-item strong{color:var(--text)}
+
+    /* LAYOUT */
+    .post-layout{max-width:800px;margin:0 auto;padding:56px 40px 100px}
+
+    /* CONTENT */
+    .post-content h2{font-size:1.5rem;font-weight:800;margin:48px 0 16px;color:#fff;
+      border-top:2px solid var(--orange);padding-top:20px}
+    .post-content h3{font-size:1.05rem;font-weight:700;margin:28px 0 10px;color:var(--orange)}
+    .post-content p{font-size:1rem;color:#ccc;line-height:1.85;margin-bottom:20px}
+    .post-content strong{color:#fff;font-weight:700}
+    .post-content ul{padding-left:20px;margin-bottom:20px}
+    .post-content ul li{font-size:1rem;color:#ccc;line-height:1.85;margin-bottom:8px}
+    .post-content ul li strong{color:#fff}
+
+    /* FITTING GRID */
+    .fitting-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:28px 0}
+    @media(max-width:580px){.fitting-grid{grid-template-columns:1fr}}
+    .fitting-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:22px 24px}
+    .fitting-card .fc-icon{font-size:1.6rem;margin-bottom:10px}
+    .fitting-card .fc-name{font-size:1rem;font-weight:800;color:#fff;margin-bottom:6px}
+    .fitting-card .fc-sku{font-size:.75rem;color:var(--orange);font-weight:600;margin-bottom:10px;letter-spacing:.3px}
+    .fitting-card .fc-desc{font-size:.88rem;color:#bbb;line-height:1.65}
+
+    /* STEP BOX */
+    .step-box{display:flex;gap:20px;background:var(--dark2);border:1px solid var(--border);
+      border-radius:12px;padding:24px;margin:16px 0;align-items:flex-start}
+    .step-num{min-width:40px;height:40px;background:var(--orange);color:#fff;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;flex-shrink:0}
+    .step-body h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
+    .step-body p{font-size:.92rem;color:#bbb;line-height:1.7;margin:0}
+    .step-body code{background:var(--dark3);color:var(--orange);padding:2px 8px;
+      border-radius:4px;font-size:.85rem;font-family:monospace}
+
+    /* HIGHLIGHT BOX */
+    .highlight-box{background:var(--dark2);border:1px solid var(--border);border-left:4px solid var(--orange);
+      border-radius:0 12px 12px 0;padding:24px 28px;margin:28px 0}
+    .highlight-box h3{color:#fff;font-size:1rem;margin:0 0 12px}
+    .highlight-box p,.highlight-box li{font-size:.92rem;color:#ccc;line-height:1.75}
+    .highlight-box ul{padding-left:18px;margin:0}
+    .highlight-box ul li{margin-bottom:6px}
+
+    /* PRO TIP */
+    .pro-tip{background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.25);
+      border-radius:10px;padding:20px 24px;margin:20px 0}
+    .pro-tip-label{font-size:.72rem;font-weight:800;text-transform:uppercase;
+      letter-spacing:1px;color:var(--orange);margin-bottom:8px}
+    .pro-tip p{margin:0;font-size:.92rem;color:#ccc}
+    .pro-tip a{color:var(--orange);text-decoration:none;font-weight:600}
+    .pro-tip a:hover{text-decoration:underline}
+
+    /* SPEC TABLE */
+    .spec-wrap{overflow-x:auto;margin:24px 0;border-radius:12px;border:1px solid var(--border)}
+    table.spec-tbl{width:100%;border-collapse:collapse;font-size:.88rem}
+    table.spec-tbl th{background:var(--dark3);color:#fff;font-weight:700;padding:12px 16px;
+      text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+    table.spec-tbl td{padding:11px 16px;border-top:1px solid var(--border);color:#ccc;vertical-align:middle}
+    table.spec-tbl tr:hover td{background:rgba(255,255,255,0.02)}
+    table.spec-tbl td.sku{color:var(--orange);font-family:monospace;font-size:.82rem;white-space:nowrap}
+    table.spec-tbl td.label{color:#fff;font-weight:600}
+
+    /* FAQ */
+    .faq-list{margin:32px 0}
+    .faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+    .faq-q{font-size:1rem;font-weight:700;color:#fff;margin-bottom:10px}
+    .faq-a{font-size:.92rem;color:#bbb;line-height:1.75}
+    .faq-a strong{color:#fff}
+
+    /* CTA */
+    .conclusion-box{background:var(--dark2);border:1px solid var(--border);
+      border-radius:16px;padding:40px;margin:48px 0;text-align:center}
+    .conclusion-box h2{font-size:1.5rem;font-weight:900;margin-bottom:16px;border:none;padding:0}
+    .conclusion-box p{color:#bbb;max-width:560px;margin:0 auto 28px;font-size:.97rem;line-height:1.75}
+    .btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:14px 32px;
+      border-radius:10px;font-weight:800;font-size:1rem;text-decoration:none;transition:background .2s}
+    .btn-cta:hover{background:var(--orange-light)}
+    .btn-secondary{display:inline-block;border:1px solid var(--border);color:var(--text);
+      padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;
+      text-decoration:none;margin-left:12px;transition:border-color .2s}
+    .btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+
+    footer{background:var(--black);border-top:1px solid var(--border);padding:40px;text-align:center}
+    footer p{color:var(--muted);font-size:.85rem}
+    footer a{color:var(--orange);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo" />
+    <span>YONGRUI</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#applications">Applications</a>
+    <a href="index.html#products">Products</a>
+    <a href="index.html#specs">Specs</a>
+    <a href="blog.html">Blog</a>
+    <a href="gym-cable.html">&mdash;Cable Builder</a>
+    <a href="index.html#quote" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="post-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>&mdash;/span>
+      <a href="blog.html">Blog</a><span>&mdash;/span>
+      Custom Cable Assembly Guide
+    </div>
+    <div class="post-category">Sourcing Guide</div>
+    <h1 class="post-title">
+      Custom Gym Cable Assembly:<br/>
+      The Complete Guide to <span>End-Fittings</span> &amp; Ordering
+    </h1>
+    <div class="post-meta">
+      <div class="post-meta-item">&mdash;<strong>YONGRUI Engineering Team</strong></div>
+      <div class="post-meta-item">📅 <strong>April 2026</strong></div>
+      <div class="post-meta-item">&mdash;<strong>7 min read</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="post-layout">
+  <div class="post-content">
+
+    <p>
+      When sourcing replacement gym cables, most buyers focus on the wire rope itself &mdash;the diameter, the coating, the flexibility. But the end-fittings are equally critical. They determine whether the cable <strong>physically fits your machine</strong>, how safely it connects under load, and how easy it is for gym staff to replace.
+    </p>
+    <p>
+      At Yongrui, we supply fully assembled cable solutions with <strong>60+ accessory SKUs</strong> &mdash;from bare wire rope to factory-swaged, pull-tested, ready-to-install assemblies. This guide walks you through every decision you need to make.
+    </p>
+
+    <!-- SECTION 1 -->
+    <h2>1. Common End-Fitting Types</h2>
+    <p>The right terminal depends on how the cable connects to the weight stack, handle, or anchor point on your specific machine. Here are the four primary categories:</p>
+
+    <div class="fitting-grid">
+      <div class="fitting-card">
+        <div class="fc-icon">&mdash;/div>
+        <div class="fc-name">Ball Shanks (Cable Stoppers)</div>
+        <div class="fc-sku">YR-1602 Series · YR-1605 Series</div>
+        <div class="fc-desc">Pressed onto the cable end to act as a mechanical stop, preventing the cable from retracting through the pulley. Available in galvanized steel (YR-1602) and PVC+Steel stopper form (YR-1605). Most common on weight stacks and selector pins.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">🔗</div>
+        <div class="fc-name">Eyelet Terminals</div>
+        <div class="fc-sku">YR-1603 · YR-1604 Series</div>
+        <div class="fc-desc">A flat or teardrop-shaped loop with a bolt hole. Used to connect cable to the weight stack anchor or a fixed pin. Available in galvanized steel (YR-1603) and SS304 stainless (YR-1604) for corrosion resistance. Hole sizes: M6–M12.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">🔩</div>
+        <div class="fc-name">Threaded Studs (Thread Plugs)</div>
+        <div class="fc-sku">YR-1611 Series · M12</div>
+        <div class="fc-desc">A threaded rod swaged into the cable end, allowing fine tension adjustment via a locking nut. Essential for ensuring zero slack on lat pulldown stations and cable crossovers. Available in M12 standard thread, galvanized or zinc-plated.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">🪝</div>
+        <div class="fc-name">Snap Hooks &amp; Carabiners</div>
+        <div class="fc-sku">Quick-Release Attachments</div>
+        <div class="fc-desc">Allow users to quickly swap between handles &mdash;lat bar to tricep rope to ankle strap &mdash;without tools. Spring-loaded gate mechanism rated for gym load cycles. Ideal for functional training stations and cable crossover systems.</div>
+      </div>
+    </div>
+
+    <div class="pro-tip">
+      <div class="pro-tip-label">💡 Sourcing Tip</div>
+      <p>Not sure which fitting your machine uses? Send us a photo of the existing cable end and the machine model number. Our engineers will identify the exact fitting type and provide a matched replacement spec &mdash;<a href="index.html#quote">free of charge</a>.</p>
+    </div>
+
+    <!-- SECTION 2: ACCESSORY SKUs -->
+    <h2>2. Accessory SKU Reference &mdash;Key Stock Items</h2>
+    <p>The following fittings are stocked at our Shanghai factory for fast dispatch. Custom dimensions are available with 7-day lead time.</p>
+
+    <div class="spec-wrap">
+      <table class="spec-tbl">
+        <thead>
+          <tr>
+            <th>SKU</th><th>Type</th><th>Material</th><th>Size Range</th><th>Unit Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sku">YR-1602-S/M/L</td><td class="label">Shank Ball Joint</td><td>Galvanized Steel</td><td>S / M / L</td><td>$0.14&mdash;0.29</td></tr>
+          <tr><td class="sku">YR-1603-S/M/L</td><td class="label">Metal Eyelet (Flat)</td><td>Galvanized Steel</td><td>M6–M12 hole</td><td>$0.17&mdash;0.35</td></tr>
+          <tr><td class="sku">YR-1604-S/M/L</td><td class="label">Metal Eyelet (Flat)</td><td>SS304 Stainless</td><td>M6–M12 hole</td><td>$0.38&mdash;0.76</td></tr>
+          <tr><td class="sku">YR-1605-S/M/L</td><td class="label">Cable Stopper</td><td>PVC + Steel</td><td>3 sizes</td><td>$2.40&mdash;4.45</td></tr>
+          <tr><td class="sku">YR-1611-S/M/L</td><td class="label">Thread Plug M12</td><td>Zinc-plated Steel</td><td>M12 standard</td><td>$0.34&mdash;0.69</td></tr>
+          <tr><td class="sku">YR-1612-S/M/L</td><td class="label">Pulley Assembly</td><td>Chromium / SS304</td><td>3 sizes</td><td>$1.45&mdash;2.40</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 3: SWAGING -->
+    <h2>3. Why Professional Swaging is Non-Negotiable</h2>
+    <p>
+      In a commercial gym environment, an end-fitting failure is not a maintenance issue &mdash;it's a safety incident. A cable under a 200 lb weight stack that pulls free of its fitting can cause serious injury.
+    </p>
+
+    <div class="highlight-box">
+      <h3>What is Hydraulic Swaging?</h3>
+      <p>Swaging is the process of cold-deforming a metal ferrule or fitting around the cable wires using high-pressure hydraulic force &mdash;typically 50&mdash;00 tons. This creates a permanent, mechanical bond between the fitting and the wire strands that is stronger than the wire itself.</p>
+      <p>A crimped or clamped fitting (the type sold in hardware stores) relies on friction only. Under repeated load cycling, the clamp loosens. A swaged fitting does not.</p>
+    </div>
+
+    <h3>Our Quality Control Process</h3>
+    <ul>
+      <li><strong>Hydraulic swaging press</strong> &mdash;calibrated to the wire diameter and fitting material for consistent compression</li>
+      <li><strong>100% pull-testing</strong> &mdash;every batch is destructively tested to verify the terminal holds beyond the rated break load</li>
+      <li><strong>Visual inspection</strong> &mdash;coating continuity check at the fitting junction to prevent moisture ingress</li>
+      <li><strong>Documentation</strong> &mdash;test certificates available for OEM customers and quality audits</li>
+    </ul>
+
+    <div class="pro-tip">
+      <div class="pro-tip-label">&mdash;Safety Note</div>
+      <p>Never use DIY cable clamps (U-bolt clamps or wire rope clips) on gym equipment. They are designed for static loads only. Gym cables experience dynamic shock loads on every rep &mdash;only swaged terminals are appropriate for this application.</p>
+    </div>
+
+    <!-- SECTION 4: HOW TO MEASURE -->
+    <h2>4. How to Measure for a Custom Cable Order</h2>
+    <p>To generate an accurate quote and ensure a perfect fit, provide these three measurements:</p>
+
+    <div class="step-box">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Total Assembly Length</h3>
+        <p>Measure <strong>bearing point to bearing point</strong> &mdash;from the center of the eyelet hole (or the base of the ball shank) on one end, to the same reference point on the other end. Do <em>not</em> measure from tip to tip of the fittings. Example: <code>1,850 mm BTP</code></p>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Cable Diameter &mdash;Two Numbers Required</h3>
+        <p>Specify both the <strong>steel core diameter</strong> and the <strong>finished OD after coating</strong>. These are different. Example: <code>Ø3.18mm core / Ø4.76mm OD (Nylon coated)</code>. If you only have the finished OD, our team can back-calculate the core size.</p>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Fitting Specifications</h3>
+        <p>For eyelets: the <strong>bolt hole diameter</strong> (e.g., <code>10mm hole for M10 bolt</code>). For ball shanks: the <strong>ball diameter and shank length</strong>. For threaded studs: the <strong>thread size and engagement length</strong>. A photo of the existing fitting with a ruler is always helpful.</p>
+      </div>
+    </div>
+
+    <div class="pro-tip">
+      <div class="pro-tip-label">📐 Can't Measure? We Can Help</div>
+      <p>Send us a clear photo of the old cable next to a ruler, plus your machine brand and model. Our engineering team can identify the specification from photos alone for most major brands (Life Fitness, Technogym, Precor, Matrix). <a href="index.html#quote">Submit a photo inquiry &mdash;/a></p>
+    </div>
+
+    <!-- SECTION 5: WHY YONGRUI -->
+    <h2>5. Why Order Assembled Cables from Yongrui?</h2>
+
+    <div class="fitting-grid">
+      <div class="fitting-card">
+        <div class="fc-icon">🏭</div>
+        <div class="fc-name">One-Stop Supply Chain</div>
+        <div class="fc-desc">Wire rope, coatings, fittings, pulleys, and shackles &mdash;all sourced and assembled in our Shanghai factory. No coordination between multiple suppliers.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">📐</div>
+        <div class="fc-name">OEM Precision Matching</div>
+        <div class="fc-desc">We replicate cables for Life Fitness, Technogym, Precor, Matrix, and more. Provide a sample or drawing &mdash;we match it exactly, including proprietary fitting shapes.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">&mdash;/div>
+        <div class="fc-name">Pull-Tested Every Batch</div>
+        <div class="fc-desc">Every assembly is tested before shipment. Test certificates included with OEM orders. ISO 9001 certified quality management system.</div>
+      </div>
+      <div class="fitting-card">
+        <div class="fc-icon">🌍</div>
+        <div class="fc-name">Global Export Ready</div>
+        <div class="fc-desc">Shipped to 30+ countries. Fast lead times: 7 days for stock specs, 10&mdash;4 days for custom assemblies. MOQ 500m cable or 200 assemblies.</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Can you replicate a cable just from a photo?</div>
+        <div class="faq-a">Yes &mdash;in most cases. While a technical drawing gives us the most precision, our engineers can determine the correct spec from high-quality photos plus basic measurements (total length and OD). We work with gym maintenance companies that service multiple brands and rarely have original specs on file.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the minimum order quantity for custom assemblies?</div>
+        <div class="faq-a">For fully custom assemblies (specific length + fitting combination): <strong>MOQ is 200 pieces</strong> per specification. For raw cable by the meter: <strong>500m per specification</strong>. For sample/qualification orders: 1&mdash;0 pieces available at sample pricing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What materials are the fittings made from?</div>
+        <div class="faq-a">We stock fittings in three materials: <strong>Zinc-plated steel</strong> (standard, indoor use), <strong>Galvanized steel</strong> (higher corrosion resistance), and <strong>SS304 stainless steel</strong> (marine/outdoor/premium indoor). All materials are sourced from certified Chinese mills with full traceability.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer wholesale pricing for gym maintenance companies?</div>
+        <div class="faq-a">Yes. We have a dedicated wholesale program for spare parts distributors and gym maintenance companies. Volume pricing starts at 50+ assemblies per order. Contact us with your expected monthly volume for a dedicated pricing sheet.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does production take for a custom cable order?</div>
+        <div class="faq-a"><strong>Standard stock specifications</strong> (common diameters + fittings from our catalog): 7 days. <strong>Custom lengths or non-stock fittings</strong>: 10&mdash;4 days. <strong>First-time OEM replication</strong> (requires a sample for verification): 14&mdash;1 days including approval sample. Express production is available for urgent orders &mdash;contact us to discuss.</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="conclusion-box">
+      <h2>Ready to Order Your Custom Assembly?</h2>
+      <p>
+        Stop fitting generic cables to machines they weren't designed for. Send us your spec, a photo, or your machine model &mdash;and we'll have a factory-direct quote back to you within 24 hours.
+      </p>
+      <a href="index.html#quote" class="btn-cta">Get a Free Quote &mdash;/a>
+      <a href="gym-cable.html" class="btn-secondary">&mdash;Build Your Cable Spec</a>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <p>© 2026 Shanghai Yongrui Metal Products Co., Ltd. &nbsp;|&nbsp;
+    <a href="mailto:info@yrsteelwirerope.com">info@yrsteelwirerope.com</a>
+    &nbsp;|&nbsp; <a href="blog.html">&mdash;Back to Blog</a>
+  </p>
+</footer>
+
+</body>
+</html>
