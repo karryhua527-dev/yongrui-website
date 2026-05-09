@@ -514,21 +514,14 @@
       email: email
     };
 
-    fetch('send-email.php', {
+    fetch('https://formsubmit.co/ajax/info@yrsteelwirerope.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(res => res.json())
     .then(data => {
-      if (data.status === 'success') {
-        alert('Thank you! Your inquiry has been sent directly to our team.');
-        btn.textContent = 'Inquiry Sent!';
-      } else {
-        alert('Error: ' + data.message);
-        btn.disabled = false;
-        btn.textContent = 'Send Inquiry →';
-      }
+      alert('Thank you! Your inquiry has been submitted. Please check your email (info@yrsteelwirerope.com) for a one-time activation link if this is your first time.');
+      btn.textContent = 'Inquiry Sent!';
     })
     .catch(err => {
       alert('Connection error. Please try again.');
