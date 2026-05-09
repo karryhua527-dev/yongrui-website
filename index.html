@@ -176,354 +176,175 @@
       border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s}
     .form-submit:hover{background:var(--orange-light)}
 
-            /* ── FAQ ── */
-    .faq-section{background:var(--dark2);padding:80px 40px}
-    .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-    .faq-item{background:var(--dark3);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-    .faq-q{padding:18px 22px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;
-      align-items:center;gap:12px;font-size:.95rem}
-    .faq-q .icon{font-size:1.1rem;color:var(--orange);flex-shrink:0;transition:transform .3s}
-    .faq-item.open .faq-q .icon{transform:rotate(45deg)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
-    .faq-item.open .faq-a{max-height:400px}
-    .faq-a-inner{padding:0 22px 18px;font-size:.88rem;color:var(--text-muted);line-height:1.75}
-    .faq-icon{font-size:1.2rem;color:var(--orange);flex-shrink:0;transition:transform .3s;font-style:normal}
-    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    /* ── FAQ ── */
+    .faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .faq-item{background:var(--dark2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .faq-q{width:100%;padding:18px 24px;background:none;border:none;color:inherit;text-align:left;
+      font-weight:700;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease-out}
+    .faq-item.open .faq-a{max-height:300px}
+    .faq-a-inner{padding:0 24px 20px;font-size:.9rem;color:var(--text-muted);line-height:1.7}
+    .faq-icon{font-size:1.2rem;color:var(--orange);transition:transform .3s}
     
     /* ── FOOTER ── */
-    footer{background:var(--dark1);border-top:1px solid var(--border);padding:60px 0 30px}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;
-      max-width:1200px;margin-left:auto;margin-right:auto;padding:0 40px}
-    .footer-col h4{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;
-      color:var(--text-muted);margin-bottom:16px}
-    .footer-col a{display:block;color:var(--text-muted);text-decoration:none;font-size:.88rem;
-      margin-bottom:8px;transition:color .2s}
+    footer{background:var(--dark2);padding:80px 40px 40px;border-top:1px solid var(--border)}
+    .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:60px}
+    .footer-brand p{margin:20px 0;font-size:.9rem;color:var(--text-muted);max-width:320px}
+    .footer-certs{display:flex;gap:10px}
+    .cert-badge{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:4px;border:1px solid var(--border)}
+    .footer-col h4{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+    .footer-col a{display:block;margin-bottom:12px;font-size:.9rem;color:var(--text-muted)}
     .footer-col a:hover{color:var(--orange)}
-    .footer-brand p{font-size:.85rem;color:var(--text-muted);line-height:1.7;margin:14px 0 20px}
-    .footer-certs{display:flex;gap:8px;flex-wrap:wrap}
-    .cert-badge{padding:4px 12px;border:1px solid var(--border);border-radius:20px;
-      font-size:.72rem;font-weight:700;color:var(--text-muted)}
-    .footer-contact-item{font-size:.88rem;color:var(--text-muted);margin-bottom:10px}
-    .footer-contact-item a{color:var(--text-muted);text-decoration:none;transition:color .2s}
-    .footer-contact-item a:hover{color:var(--orange)}
-    .footer-bottom{border-top:1px solid var(--border);padding:24px 40px 0;
-      max-width:1200px;margin:0 auto;
-      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-contact-item{margin-bottom:12px;font-size:.9rem;color:var(--text-muted)}
+    .footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:30px;border-top:1px solid var(--border);text-align:center}
     .footer-bottom p{font-size:.8rem;color:var(--text-muted)}
-    .footer-bottom a{color:var(--text-muted);text-decoration:none}
-    .footer-bottom a:hover{color:var(--orange)}
-    @media(max-width:900px){
-      .footer-grid{grid-template-columns:1fr 1fr}
-    }
-    @media(max-width:600px){
-      .footer-grid{grid-template-columns:1fr}
-      .custom-inner{grid-template-columns:1fr}
-      .form-row{grid-template-columns:1fr}
-      .faq-section{padding:60px 20px}
-    }
-    /* ── WHATSAPP FLOAT ── */
-    .wa-float{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:#25d366;
-      border-radius:50%;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 16px rgba(0,0,0,.35);z-index:999;transition:transform .2s}
-    .wa-float:hover{transform:scale(1.1)}
-    .wa-float svg{width:30px;height:30px;fill:#fff}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}}
 </style>
 </head>
 <body>
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo"><img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Icon" style="height:56px;width:auto" /><span style="font-size:1.3rem;font-weight:800;letter-spacing:1px;color:#fff">YONGRUI</span></a>
+<nav class="nav">
+  <div class="nav-logo"><img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Icon" style="height:56px;width:auto" /><span style="font-size:1.3rem;font-weight:800;letter-spacing:1px;color:#fff">YONGRUI</span></div>
   <div class="nav-links">
     <a href="#applications">Applications</a>
     <a href="#products">Products</a>
     <a href="#specs">Specs</a>
-    <a href="#why-us">Why Us</a>
-    <a href="#testimonials">Reviews</a>
-    <a href="blog.html">Blog</a>
     <a href="gym-cable.html" style="color:var(--orange);font-weight:600">&#9881; Cable Builder</a>
     <a href="#custom" class="nav-cta">Get a Quote</a>
   </div>
-  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
+
 <section class="hero" id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">&#x2022; ISO 9001 Certified Factory &#x2022; Shanghai, China</div>
-      <h1>Gym Cables That <span>Never Fail</span><br>on the Training Floor</h1>
-      <p>Factory-direct PU, Nylon &amp; custom-coated gym cables with custom end fittings. ISO 9001 certified. Trusted by equipment OEMs in 30+ countries.</p>
+      <div class="hero-badge">ISO 9001 Certified Factory</div>
+      <h1>Gym Cables That <span>Never Fail</span></h1>
+      <p>Factory-direct PU, Nylon &amp; custom-coated gym cables. OEM supplier to 30+ countries since 2016.</p>
       <div class="hero-actions">
-        <a href="#custom" class="btn btn-primary">&#x2709; Request a Quote</a>
-        <a href="#products" class="btn btn-outline">View Products</a>
+        <a href="#custom" class="btn btn-primary">Request a Quote</a>
         <a href="gym-cable.html" class="btn btn-outline" style="border-color:var(--orange);color:var(--orange)">&#9881; Build Your Cable</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><strong>8+</strong><span>Years Export</span></div>
+        <div class="hero-stat"><strong>8+</strong><span>Years</span></div>
         <div class="hero-stat"><strong>30+</strong><span>Countries</span></div>
-        <div class="hero-stat"><strong>60+</strong><span>Hardware SKUs</span></div>
-        <div class="hero-stat"><strong>1300m&#xB2;</strong><span>Factory</span></div>
+        <div class="hero-stat"><strong>60+</strong><span>Fittings</span></div>
       </div>
     </div>
-  </div>
-</section>
-<div class="trust-bar">
-  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>ISO 9001 Certified</div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5&ndash;7 Day Lead Time</div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>DDP / FOB / EXW</div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>500+ B2B Clients</div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free Samples Available</div>
-</div>
-<section id="applications">
-  <div class="container">
-    <div class="section-header"><div class="section-label">Where We Serve</div>
-    <h2 class="section-title">Built for Every Training Environment</h2>
-    <p class="section-sub">Our gym cables are trusted by commercial equipment OEMs, gym chains, and fitness brands worldwide.</p></div>
-    <div class="apps-grid">
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Hbd813994fbbf42dcbab0e818fe574490Y.png') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x1F3CB;</div><h3 style="color:#fff">Cable Machines &amp; Functional Trainers</h3><p style="color:rgba(255,255,255,0.85)">Smooth pull, low-stretch, long-lasting PU or nylon coating for high-cycle commercial use.</p><div class="app-tags"><span class="app-tag">High-Cycle</span><span class="app-tag">Low Stretch</span><span class="app-tag">OEM Ready</span></div></div></div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Hb928982406514704a00ba9bd3837b280i.png') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x1F4AA;</div><h3 style="color:#fff">Lat Pulldowns &amp; Seated Rows</h3><p style="color:rgba(255,255,255,0.85)">7&times;19 construction for smooth, consistent stroke. Handles heavy loads with minimal elongation.</p><div class="app-tags"><span class="app-tag">7&times;19</span><span class="app-tag">Low Elongation</span><span class="app-tag">Heavy Load</span></div></div></div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H47cd73d4b5d14e9f8ec5759a02929b38K.jpg') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x2699;&#xFE0F;</div><h3 style="color:#fff">Pulley &amp; Weight Stack Systems</h3><p style="color:rgba(255,255,255,0.85)">Full range of pulley-compatible cables with precise diameter tolerance for smooth weight stack operation.</p><div class="app-tags"><span class="app-tag">Pulley-Ready</span><span class="app-tag">Tight Tolerance</span><span class="app-tag">Custom Length</span></div></div></div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Heb21b21f9ade4092939eac1ab7b292daJ.png') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x26A1;</div><h3 style="color:#fff">CrossFit &amp; Functional Training</h3><p style="color:rgba(255,255,255,0.85)">High-abrasion coating survives chalk, sweat, and daily abuse. Built for box gyms and high-intensity rigs.</p><div class="app-tags"><span class="app-tag">Abrasion-Resistant</span><span class="app-tag">High-Intensity</span><span class="app-tag">Box Gym</span></div></div></div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H2169f08719104c43b4aca822a2f59390R.png') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x1FA7A;</div><h3 style="color:#fff">Rehabilitation &amp; Physiotherapy</h3><p style="color:rgba(255,255,255,0.85)">Smooth, consistent resistance with gentle surface finish. Trusted by physio clinics worldwide.</p><div class="app-tags"><span class="app-tag">Low Noise</span><span class="app-tag">Smooth Pull</span><span class="app-tag">Clinic-Grade</span></div></div></div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H7f31952bcddf434a823de0185b386fa7k.png') center/cover no-repeat;position:relative;overflow:hidden;border:none"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.58)"></div><div style="position:relative;z-index:1"><div class="app-icon">&#x1F3ED;</div><h3 style="color:#fff">Private Label &amp; OEM</h3><p style="color:rgba(255,255,255,0.85)">Custom branding, color, and packaging. NDA protected. MOQ 500m. Shipped to 30+ countries.</p><div class="app-tags"><span class="app-tag">Custom Brand</span><span class="app-tag">NDA Protected</span><span class="app-tag">30+ Countries</span></div></div></div>
+    <div class="hero-visual">
+      <div class="hero-card"><div class="hero-card-icon orange">&#x2699;</div><div><h3>Custom Configuration</h3><p>Pick coatings, diameters, and end fittings.</p></div></div>
+      <div class="hero-card"><div class="hero-card-icon blue">&#x1F6A2;</div><div><h3>Global Logistics</h3><p>DDP/FOB shipping worldwide.</p></div></div>
     </div>
   </div>
 </section>
-<section id="why-us" style="background:var(--dark1)">
-  <div class="container">
-    <div class="section-header"><div class="section-label">Why Yongrui</div>
-    <h2 class="section-title">What Sets Our Cables Apart</h2>
-    <p class="section-sub">We don&rsquo;t just make wire rope &mdash; we build the specification that commercial gym equipment OEMs return to year after year.</p></div>
-    <div class="why-grid">
-      <div class="why-card"><div class="why-icon">&#x1F3ED;</div><div><h3>Vertically Integrated Factory</h3><p>In-house stranding, coating, and assembly in our 1,300 m&sup2; Shanghai facility. No middlemen = faster lead times and tighter QC.</p></div></div>
-      <div class="why-card"><div class="why-icon">&#x1F4CB;</div><div><h3>ISO 9001 &amp; RoHS Certified</h3><p>Full batch traceability, third-party auditable. Certificates available with every order. We welcome factory visits and video audits.</p></div></div>
-      <div class="why-card"><div class="why-icon">&#x1F3A8;</div><div><h3>True Custom Capability</h3><p>Custom diameter (&Phi;3.2&ndash;8mm), coating type (PU / Nylon), color (RAL match), length, and end fittings. Minimum 500m per color for bulk cable.</p></div></div>
-      <div class="why-card"><div class="why-icon">&#x23F1;</div><div><h3>Consistent 5&ndash;7 Day Lead Time</h3><p>Stock-and-ready for standard specs. Custom orders quoted within 24 hours. Repeat OEM clients for 6+ consecutive years.</p></div></div>
-      <div class="why-card"><div class="why-icon">&#x1F30D;</div><div><h3>30+ Countries Delivered</h3><p>Experienced with CE documentation and platform export requirements for US, EU, UK, AU, and Middle East markets.</p></div></div>
-      <div class="why-card"><div class="why-icon">&#x1F91D;</div><div><h3>Dedicated Trade Manager</h3><p>Every client gets a named account contact. Direct WhatsApp and email response within 2 business hours.</p></div></div>
-    </div>
-  </div>
-</section>
-<section id="products" class="products-section">
-  <div class="container">
-    <div class="section-header"><div class="section-label">Product Range</div>
-    <h2 class="section-title">Gym Cables &amp; Hardware</h2>
-    <p class="section-sub">From bulk wire rope to fully assembled cable sets &mdash; everything your gym equipment OEM project needs from one factory.</p></div>
-    <div class="product-tabs">
-      <button class="tab-btn active" data-tab="cables">Gym Cables</button>
-      <button class="tab-btn" data-tab="fittings">Fittings &amp; Hardware</button>
-    </div>
-    <div class="products-grid" id="tab-cables">
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc02.alicdn.com/kf/A5bf7e34cb56841f7b377d57a4419c0a6v.png" alt="PU Coated Gym Cable" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">PU Coated Gym Cable</div><p class="product-desc">TPU coated over SS304 core. Available in 4 sizes (Ø2.4&mdash;mm core). From $0.37/m. Service life: 100,000&mdash;50,000 cycles. Industry-standard for budget-conscious OEMs.</p><ul class="product-specs"><li><span class="k">Core</span><span class="v">SS304 / SS316</span></li><li><span class="k">Construction</span><span class="v">7&times;7 / 7&times;19</span></li><li><span class="k">Diameter</span><span class="v">&Phi;3.2 / 4 / 5 / 6 / 8 mm</span></li><li><span class="k">MOQ</span><span class="v">500 m / color</span></li></ul><a href="#custom" class="product-cta">Request Sample</a></div></div>
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc01.alicdn.com/kf/A09f9b33b44874cb983584c462e38b3b85.png" alt="Nylon Coated Gym Cable" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">Nylon Coated Gym Cable</div><p class="product-desc">Softer hand-feel, superior kink resistance. Preferred for rehab equipment and CrossFit rigs.</p><ul class="product-specs"><li><span class="k">Core</span><span class="v">SS304 / SS316</span></li><li><span class="k">Construction</span><span class="v">7&times;7 / 7&times;19</span></li><li><span class="k">Diameter</span><span class="v">&Phi;3.2 / 4 / 5 / 6 mm</span></li><li><span class="k">MOQ</span><span class="v">500 m / color</span></li></ul><a href="#custom" class="product-cta">Request Sample</a></div></div>
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc01.alicdn.com/kf/A88de40daf91f4184be182bd688476a7bd.png" alt="Assembled Pull Rope Set" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">Assembled Pull Rope Set</div><p class="product-desc">Ready-to-install cable assemblies with your choice of end fittings. Custom length, color, and labeling.</p><ul class="product-specs"><li><span class="k">End Fittings</span><span class="v">Ball / Eye / Hook / Custom</span></li><li><span class="k">Length</span><span class="v">Custom (any)</span></li><li><span class="k">MOQ</span><span class="v">100 pcs</span></li><li><span class="k">Lead Time</span><span class="v">5&ndash;7 days</span></li></ul><a href="gym-cable.html" class="product-cta" style="background:var(--orange);color:#fff">&#9881; Build &amp; Quote</a></div></div>
-    </div>
-    <div class="products-grid" id="tab-fittings" style="display:none">
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc02.alicdn.com/kf/A8fdc88683468403188fb583602d082ebJ.png" alt="Ball Terminal End Stop" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">Ball Terminal End Stop</div><p class="product-desc">Stainless steel ball end stop, precision machined. Fits standard cable channels on commercial machines.</p><ul class="product-specs"><li><span class="k">Material</span><span class="v">SS304</span></li><li><span class="k">Sizes</span><span class="v">M4 / M5 / M6 / M8</span></li><li><span class="k">MOQ</span><span class="v">200 pcs</span></li></ul><a href="fittings.html" class="product-cta">See All 60+ SKUs</a></div></div>
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc02.alicdn.com/kf/A5a4860c0bc7f4f47bfbe7dad15bf51d5F.png" alt="Snap Hook and Carabiner" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">Snap Hook &amp; Carabiner</div><p class="product-desc">Quick-release snap hooks for cable attachment points. High-cycle tested, smooth action gate.</p><ul class="product-specs"><li><span class="k">Material</span><span class="v">SS304 / Zinc Alloy</span></li><li><span class="k">Load</span><span class="v">Up to 800 kg WLL</span></li><li><span class="k">MOQ</span><span class="v">200 pcs</span></li></ul><a href="fittings.html" class="product-cta">See All 60+ SKUs</a></div></div>
-      <div class="product-card"><div class="product-img-wrap" style="background:#fff;padding:0"><img src="https://sc01.alicdn.com/kf/A984dce5a7ae8410cb7faa2df8f240e7fH.png" alt="Pulleys and Accessories" style="width:100%;height:100%;object-fit:cover" /></div><div class="product-body"><div class="product-name">Pulleys &amp; Accessories</div><p class="product-desc">Nylon and stainless steel pulleys, U-bolts, T-bolts, self-locking connectors and threaded rods.</p><ul class="product-specs"><li><span class="k">Types</span><span class="v">10 categories</span></li><li><span class="k">Total SKUs</span><span class="v">60+</span></li><li><span class="k">Catalog</span><span class="v">PDF available</span></li></ul><a href="fittings.html" class="product-cta">Browse All Fittings</a></div></div>
-    </div>
-  </div>
-</section>
+
 <section id="specs" class="spec-section">
   <div class="container">
     <div class="section-header"><div class="section-label">Technical Specifications</div>
-    <h2 class="section-title">Gym Cable Spec Sheet</h2>
-    <p class="section-sub">Real factory data &mdash;price per meter, service life (cycles under rated load), and weight. Custom specs available on request.</p></div>
+    <h2 class="section-title">Gym Cable Spec Sheet</h2></div>
     <div class="spec-table-wrap">
       <table class="spec-table">
         <thead>
           <tr>
             <th>Coating</th>
-            <th>Construction</th>
             <th>Steel Ø / OD</th>
             <th>Price ($/m)</th>
-            <th>Service Life (cycles)</th>
+            <th>Cycles</th>
             <th>Weight (g/m)</th>
-            <th>MOQ</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="highlight">TPU</td><td>7&times;7</td><td>&Phi;2.4 / 4 mm</td>
-            <td>$0.37</td><td>100,000</td><td>34 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td class="highlight">TPU</td><td>7&times;19</td><td>&Phi;3.18 / 4.8 mm</td>
-            <td>$0.53</td><td>150,000</td><td>59 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td class="highlight">TPU</td><td>7&times;19</td><td>&Phi;3.97 / 5.8 mm</td>
-            <td>$0.71</td><td>150,000</td><td>87 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td class="highlight">TPU</td><td>7&times;19</td><td>&Phi;4.8 / 6.35 mm</td>
-            <td>$0.94</td><td>100,000</td><td>111 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td class="highlight">TPU</td><td>7&times;19</td><td>&Phi;6 / 7.8 mm</td>
-            <td>$1.50</td><td>100,000</td><td>172 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td>Nylon</td><td>7&times;19</td><td>&Phi;3.18 / 4.76 mm</td>
-            <td>$1.03</td><td>500,000</td><td>57 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td>Nylon</td><td>7&times;19</td><td>&Phi;3.97 / 5.6 mm</td>
-            <td>$1.41</td><td>500,000</td><td>81 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td>Nylon</td><td>7&times;19</td><td>&Phi;4.8 / 6.35 mm</td>
-            <td>$1.53</td><td>300,000</td><td>115 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td>Nylon</td><td>7&times;19</td><td>&Phi;6 / 7.8 mm</td>
-            <td>$2.23</td><td>500,000</td><td>172 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td style="color:#f59e0b;font-weight:700">Pro Nylon</td><td>7&times;19</td><td>&Phi;2.4 / 4 mm</td>
-            <td>$0.78</td><td><strong style="color:#f59e0b">300,000</strong></td><td>34 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td style="color:#f59e0b;font-weight:700">Pro Nylon</td><td>7&times;19</td><td>&Phi;3.18 / 4.76 mm</td>
-            <td>$1.11</td><td><strong style="color:#f59e0b">1,000,000</strong></td><td>60 g</td><td>500 m</td>
-          </tr>
-          <tr>
-            <td style="color:#f59e0b;font-weight:700">Pro Nylon</td><td>7&times;19</td><td>&Phi;3.97 / 5.6 mm</td>
-            <td>$1.49</td><td><strong style="color:#f59e0b">1,000,000</strong></td><td>82 g</td><td>500 m</td>
-          </tr>
+          <tr><td class="highlight">TPU</td><td>&Phi;3.18 / 4.8 mm</td><td>$0.53</td><td>150,000</td><td>59 g</td></tr>
+          <tr><td class="highlight">TPU</td><td>&Phi;4.8 / 6.35 mm</td><td>$0.94</td><td>100,000</td><td>111 g</td></tr>
+          <tr><td>Nylon</td><td>&Phi;3.97 / 5.6 mm</td><td>$1.41</td><td>500,000</td><td>81 g</td></tr>
+          <tr><td style="color:#f59e0b;font-weight:700">Pro Nylon</td><td>&Phi;3.18 / 4.76 mm</td><td>$1.11</td><td>1,000,000</td><td>60 g</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin-top:16px;font-size:.82rem;color:var(--text-muted)">&#x2139; Service life tested under rated load at 25°C. Pro Nylon uses imported PA12 material. Contact us for full test certificates and break load data.</p>
   </div>
 </section>
-<section id="testimonials">
-  <div class="container">
-    <div class="section-header"><div class="section-label">What Clients Say</div>
-    <h2 class="section-title">Trusted by Fitness Equipment Brands</h2>
-    <p class="section-sub">Real feedback from OEM buyers and gym equipment distributors across 4 continents.</p></div>
-    <div class="testi-grid">
-      <div class="testi-card"><div class="testi-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div><p class="testi-text">&ldquo;We&rsquo;ve been sourcing gym cables from Yongrui for 4 years. Consistent quality, proper certs, and they always hit lead times. Our cable machines simply work &mdash; that&rsquo;s because the cable is right.&rdquo;</p><div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">James M.</div><div class="testi-origin">Gym Equipment OEM &mdash; United States</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div><p class="testi-text">&ldquo;The custom color nylon cables match our branding perfectly. Account manager replied within an hour, sent samples in 3 days, and production was faultless. Rare for this price point.&rdquo;</p><div class="testi-author"><div class="testi-avatar">SL</div><div><div class="testi-name">Sophie L.</div><div class="testi-origin">Commercial Gym Chain &mdash; United Kingdom</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div><p class="testi-text">&ldquo;ISO certs, RoHS compliance, factory audit &mdash; all passed first time. The cable spec is exactly what we needed for EU market. Will be placing our 6th order soon.&rdquo;</p><div class="testi-author"><div class="testi-avatar">BK</div><div><div class="testi-name">Bart K.</div><div class="testi-origin">Fitness Equipment Distributor &mdash; Germany</div></div></div></div>
-    </div>
-  </div>
-</section>
+
 <section id="custom" class="custom-section">
   <div class="container">
     <div class="custom-inner">
       <div>
         <div class="section-label">Get a Quote</div>
-        <h2 class="section-title">Custom Cable &amp; Fittings Quote</h2>
-        <p class="section-sub" style="margin-bottom:36px">Tell us your spec and we&rsquo;ll reply with pricing within 24 hours.</p>
-        <div class="custom-steps">
-          <div class="custom-step"><div class="step-num">1</div><div class="step-content"><h4>Share Your Spec</h4><p>Coating type, diameter, construction, and color.</p></div></div>
-          <div class="custom-step"><div class="step-num">2</div><div class="step-content"><h4>End Fittings &amp; Length</h4><p>Left/right termination, length (mm), and quantity.</p></div></div>
-          <div class="custom-step"><div class="step-num">3</div><div class="step-content"><h4>Receive Formal Quote</h4><p>We reply within 24 h (Mon&ndash;Fri) with price and lead time.</p></div></div>
-          <div class="custom-step"><div class="step-num">4</div><div class="step-content"><h4>Sample &amp; Production</h4><p>Approve a sample before full production run.</p></div></div>
-        </div>
+        <h2 class="section-title">Custom Cable Quote</h2>
+        <p class="section-sub">We reply within 24 hours with price and lead time.</p>
       </div>
       <div class="custom-form-box">
         <div class="form-title">Request a Quote</div>
-        <div class="form-subtitle">Free samples &bull; ISO 9001 factory &bull; 30+ countries served</div>
         <div class="form-row">
-          <div class="form-group"><label>Name *</label><input type="text" placeholder="John Smith" /></div>
-          <div class="form-group"><label>Company *</label><input type="text" placeholder="ACME Fitness Inc." /></div>
+          <div class="form-group"><label>Name *</label><input type="text" id="idx-name" placeholder="John Smith" /></div>
+          <div class="form-group"><label>Company</label><input type="text" id="idx-company" placeholder="ACME Fitness" /></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Email *</label><input type="email" placeholder="john@company.com" /></div>
-          <div class="form-group"><label>Country *</label><input type="text" placeholder="United States" /></div>
+          <div class="form-group"><label>Email *</label><input type="email" id="idx-email" placeholder="john@company.com" /></div>
+          <div class="form-group"><label>Country</label><input type="text" id="idx-country" placeholder="USA" /></div>
         </div>
-        <div class="form-group"><label>Product Requirements</label>
-          <textarea rows="4" placeholder="e.g. PU coated, SS304, 7x19, Φ4mm, black, 2400mm, snap hook both ends, 500 pcs"></textarea>
+        <div class="form-group"><label>Requirements *</label>
+          <textarea id="idx-req" rows="4" placeholder="e.g. PU coated, 5mm, 2400mm length, snap hook, 500 pcs"></textarea>
         </div>
-        <button class="form-submit" onclick="window.location.href='mailto:info@yrsteelwirerope.com?subject=Quote Request &mdash;Gym Cable&body=Please fill in your requirements here.'">Send Inquiry &rarr;</button>
+        <button class="form-submit" id="idx-submit">Send Inquiry &rarr;</button>
       </div>
-    </div>
-  </div>
-</section>
-<section id="faq" style="background:var(--dark1)">
-  <div class="container">
-    <div class="section-header" style="text-align:center"><div class="section-label">FAQ</div>
-    <h2 class="section-title">Frequently Asked Questions</h2></div>
-    <div class="faq-list">
-      <div class="faq-item open"><button class="faq-q">What is the minimum order quantity (MOQ)?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">For bulk cable, MOQ is <strong>500 m per color</strong>. For assembled cable sets, MOQ is <strong>100 pcs</strong>. For fittings, most SKUs start at 200 pcs. Lower MOQs for sample/trial orders &mdash; contact us.</div></div></div>
-      <div class="faq-item"><button class="faq-q">Which coating should I choose &mdash;TPU, Nylon, or Pro Nylon?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>TPU</strong> ($0.37&mdash;1.50/m): 100,000&mdash;50,000 cycles &mdash;best for home gyms and mid-range commercial equipment. <strong>Nylon</strong> ($1.03&mdash;2.23/m): 300,000&mdash;00,000 cycles &mdash;ideal for standard commercial facilities and OEM brands. <strong>Pro Nylon / PA12</strong> ($0.78&mdash;1.49/m): up to 1,000,000 cycles &mdash;the choice for premium 24/7 commercial gyms where downtime is unacceptable. Not sure? Request samples of all three &mdash;free (customer pays shipping).</div></div></div>
-      <div class="faq-item"><button class="faq-q">Do you offer free samples?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes &mdash; we offer <strong>free samples</strong> (customer pays shipping). Standard samples ship within 3 days. Custom-spec samples take 5&ndash;7 days to prepare.</div></div></div>
-      <div class="faq-item"><button class="faq-q">What certifications do you hold?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">We hold <strong>ISO 9001:2015</strong> and <strong>RoHS</strong> certification. Full test reports per GB/T 9944 available with every order. Factory audit reports on request.</div></div></div>
-      <div class="faq-item"><button class="faq-q">Can you match a custom cable color?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. We can match any <strong>RAL or Pantone color</strong> for TPU and Nylon coatings. Standard is black; custom colors available with 500m+ orders.</div></div></div>
-      <div class="faq-item"><button class="faq-q">What are your payment terms?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Standard terms: <strong>30% deposit</strong>, 70% before shipment. We accept T/T and Alibaba Trade Assurance. PayPal for sample orders.</div></div></div>
-      <div class="faq-item"><button class="faq-q">How long does production take?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Standard specs: <strong>3&ndash;5 business days</strong>. Custom orders: <strong>7&ndash;14 business days</strong>. Exact timeline confirmed with your quotation.</div></div></div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- HOW TO ORDER -->
-<section id="how-to-order" style="background:var(--dark2);padding:96px 40px">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-bottom:64px">
-      <div class="section-label">Process</div>
-      <h2 class="section-title">How to Order</h2>
-      <p class="section-sub" style="margin:0 auto">From first inquiry to delivery in as few as 7 days. Simple, transparent, and always confirmed in writing.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative">
-      <div style="position:absolute;top:40px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(to right,var(--orange),rgba(255,107,0,.2));z-index:0"></div>
-      <div style="text-align:center;padding:0 20px;position:relative;z-index:1">
-        <div style="width:80px;height:80px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px;box-shadow:0 0 0 8px rgba(255,107,0,.12)">&#x1F4E7;</div>
-        <div style="font-weight:800;font-size:1rem;margin-bottom:8px">1. Send Inquiry</div>
-        <p style="font-size:.83rem;color:var(--text-muted);line-height:1.6">Email or use the quote form. Share your spec: coating, diameter, length, fittings, quantity.</p>
-      </div>
-      <div style="text-align:center;padding:0 20px;position:relative;z-index:1">
-        <div style="width:80px;height:80px;border-radius:50%;background:var(--dark3);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px">&#x1F4B0;</div>
-        <div style="font-weight:800;font-size:1rem;margin-bottom:8px">2. Receive Quote</div>
-        <p style="font-size:.83rem;color:var(--text-muted);line-height:1.6">Formal quotation within <strong style="color:#fff">24 hours</strong>. Price, lead time, and spec sheet confirmed.</p>
-      </div>
-      <div style="text-align:center;padding:0 20px;position:relative;z-index:1">
-        <div style="width:80px;height:80px;border-radius:50%;background:var(--dark3);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px">&#x1F9EA;</div>
-        <div style="font-weight:800;font-size:1rem;margin-bottom:8px">3. Approve Sample</div>
-        <p style="font-size:.83rem;color:var(--text-muted);line-height:1.6">Sample ships in <strong style="color:#fff">3&ndash;5 days</strong>. Production starts only after your written approval.</p>
-      </div>
-      <div style="text-align:center;padding:0 20px;position:relative;z-index:1">
-        <div style="width:80px;height:80px;border-radius:50%;background:var(--dark3);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px">&#x1F69A;</div>
-        <div style="font-weight:800;font-size:1rem;margin-bottom:8px">4. Production &amp; Ship</div>
-        <p style="font-size:.83rem;color:var(--text-muted);line-height:1.6">Standard specs ready in <strong style="color:#fff">5&ndash;7 days</strong>. DDP/FOB/EXW. Door-to-door tracking provided.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:52px">
-      <a href="#custom" class="btn btn-primary" style="display:inline-flex">Start Your Inquiry &rarr;</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand footer-col">
-      <div class="nav-logo"><img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Icon" style="height:64px;width:auto" /><span style="font-size:1.3rem;font-weight:800;letter-spacing:1px;color:#fff">YONGRUI</span></div>
-      <p>Factory-direct gym cable and fittings manufacturer. ISO 9001 certified. Shanghai, China. Exporting to 30+ countries since 2016.</p>
-      <div class="footer-certs"><span class="cert-badge">ISO 9001</span><span class="cert-badge">RoHS</span><span class="cert-badge">8+ YRS</span></div>
-    </div>
-    <div class="footer-col"><h4>Products</h4>
-      <a href="#products">PU Coated Cables</a><a href="#products">Nylon Coated Cables</a>
-      <a href="#products">Assembled Sets</a><a href="fittings.html">Fittings &amp; Hardware</a>
-    </div>
-    <div class="footer-col"><h4>Company</h4>
-      <a href="#why-us">Why Yongrui</a><a href="#applications">Applications</a>
-      <a href="#specs">Specifications</a><a href="#faq">FAQ</a>
+    <div class="footer-brand">
+      <div class="nav-logo"><img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Icon" style="height:56px;width:auto" /><span style="font-size:1.3rem;font-weight:800;letter-spacing:1px;color:#fff">YONGRUI</span></div>
+      <p>Factory-direct gym cable manufacturer. ISO 9001 certified. Shanghai, China.</p>
     </div>
     <div class="footer-col"><h4>Contact</h4>
-      <div class="footer-contact-item">&#x2709; <a href="mailto:info@yrsteelwirerope.com">info@yrsteelwirerope.com</a></div>
-      <div class="footer-contact-item">&#x1F4CD; Shanghai, China</div>
-      <div class="footer-contact-item">&#x23F0; Mon&ndash;Fri 9AM&ndash;6PM CST</div>
+      <div class="footer-contact-item">info@yrsteelwirerope.com</div>
+      <div class="footer-contact-item">Shanghai, China</div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 Shanghai Yongrui Metal Products Co., Ltd. All rights reserved.</p>
+    <p>&copy; 2026 Shanghai Yongrui Metal Products Co., Ltd.</p>
   </div>
 </footer>
+
+<script>
+  document.getElementById('idx-submit')?.addEventListener('click', function() {
+    const btn = this;
+    const name = document.getElementById('idx-name').value.trim();
+    const email = document.getElementById('idx-email').value.trim();
+    const req = document.getElementById('idx-req').value.trim();
+
+    if (!name || !email || !req) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const payload = {
+      subject: 'New Inquiry from Homepage',
+      name: name,
+      company: document.getElementById('idx-company').value,
+      email: email,
+      country: document.getElementById('idx-country').value,
+      requirements: req
+    };
+
+    fetch('https://formsubmit.co/ajax/info@yrsteelwirerope.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert('Thank you! Your inquiry has been submitted successfully.');
+      btn.textContent = 'Inquiry Sent!';
+    })
+    .catch(err => {
+      alert('Error sending message. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Send Inquiry \u2192';
+    });
+  });
+</script>
 </body>
 </html>
