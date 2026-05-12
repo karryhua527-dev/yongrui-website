@@ -7,27 +7,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
-      --border:#2a2a2a;--orange:#FF6B00;--orange-light:#ff8c33;
-      --text:#f0f0f0;--muted:#888;
+    :root {
+      --orange:#FF6B00;--orange-light:#FF8C30;--orange-dark:#E05E00;
+      --black:#0A0A0A;--dark1:#111111;--dark2:#1A1A1A;--dark3:#242424;
+      --text:#E8E8E8;--text-muted:#999;--border:rgba(255,255,255,0.08);
+      --radius:12px;--shadow:0 4px 24px rgba(0,0,0,0.4);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);min-height:100vh}
+    body{font-family:'Inter',sans-serif;background:var(--black);color:var(--text);min-height:100vh;line-height:1.6}
 
     /* ── NAV ── */
-    .nav{display:flex;align-items:center;justify-content:space-between;
-      padding:0 40px;height:64px;background:rgba(10,10,10,.95);
-      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo img{height:44px;width:auto}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;display:flex;align-items:center;
+      padding:0 40px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);transition:background .3s}
+    .nav-logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem;letter-spacing:-.5px;text-decoration:none}
+    .nav-logo img{height:36px;width:auto}
     .nav-logo span{font-size:1.2rem;font-weight:800;letter-spacing:1px;color:#fff}
-    .nav-back{color:var(--muted);font-size:.88rem;text-decoration:none;
-      display:flex;align-items:center;gap:6px;transition:color .2s}
-    .nav-back:hover{color:var(--orange)}
+    .nav-back{margin-left:auto;color:var(--text-muted);font-size:.9rem;font-weight:500;text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px}
+    .nav-back:hover{color:#fff}
 
     /* ── PAGE LAYOUT ── */
-    .page{max-width:1100px;margin:0 auto;padding:48px 24px 80px}
+    .page{max-width:1100px;margin:0 auto;padding:120px 24px 80px}
     .page-title{font-size:2rem;font-weight:800;margin-bottom:6px}
     .page-sub{color:var(--muted);font-size:.95rem;margin-bottom:40px}
 
@@ -125,10 +125,11 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui" />
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo">
     <span>YONGRUI</span>
   </a>
-  <a href="index.html" class="nav-back">&#8592; Back to Home</a>
+  <a href="index.html" class="nav-back">&larr; Back to Home</a>
+  <a href="gym-cable.html" class="nav-cta" style="margin-left:24px">Build Your Cable</a>
 </nav>
 
 <div class="page">
