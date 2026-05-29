@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Cable Builder —Yongrui</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#0a0a0a;--dark1:#111;--dark2:#161616;--dark3:#1e1e1e;
+      --border:#2a2a2a;--orange:#FF6B00;--orange-light:#ff8c33;
+      --text:#f0f0f0;--muted:#777;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--dark1);color:var(--text);min-height:100vh}
+
+  /* NAV */
+  .nav{display:flex;align-items:center;justify-content:space-between;
+    padding:0 40px;height:68px;background:rgba(10,10,10,.96);
+    border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .nav-logo img{height:40px;width:auto}
+  .nav-logo span{font-size:1.2rem;font-weight:800;letter-spacing:1px;color:#fff}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{background:var(--orange);color:#fff!important;padding:9px 22px;border-radius:6px;font-weight:600!important;font-size:.9rem;text-decoration:none}
+
+    /* LAYOUT */
+    .page{max-width:1000px;margin:0 auto;padding:44px 24px 80px}
+    .page-title{font-size:1.9rem;font-weight:800;margin-bottom:6px}
+    .page-sub{color:var(--muted);font-size:.9rem;margin-bottom:40px}
+
+    /* ── PREVIEW ── */
+    .preview{background:#fff;border:1px solid #e0e0e0;border-radius:18px;padding:30px 20px 20px;margin-bottom:40px;position:relative}
+    canvas#rope-canvas{width:100%;height:180px;display:block}
+    .rope-tag-box{text-align:center;margin-top:10px}
+    .rope-tag{font-size:.68rem;color:#888;font-family:'Inter',sans-serif;
+      background:#f5f5f5;border:1px solid #e0e0e0;border-radius:20px;
+      padding:3px 14px;white-space:nowrap}
+
+    /* ── SELECTORS ── */
+    .fitting-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:40px}
+    .sec-title{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:14px}
+    .fitting-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .fit-card{border:1px solid var(--border);border-radius:10px;background:var(--dark3);padding:12px 6px;cursor:pointer;transition:all .2s;text-align:center}
+    .fit-card:hover{border-color:rgba(255,107,0,.45)}
+    .fit-card.active{border-color:var(--orange);background:rgba(255,107,0,.09)}
+    .fit-card img{width:80px;height:52px;object-fit:contain;display:block;margin:0 auto 6px}
+    /* ── End Selection Direction Logic ────────────────────────────── */
+    /* Left End Selection: ALL icons must face LEFT (Head at x=0). */
+    #grid-left .fit-card img { transform: scaleX(-1) !important; }
+    /* These assets are naturally Head-Left, so they DON'T need flipping for Left side. */
+    #grid-left .fit-card[data-val="Ball"] img,
+    #grid-left .fit-card[data-val="Bell"] img,
+    #grid-left .fit-card[data-val="Adjust"] img,
+    #grid-left .fit-card[data-val="Thread Swage"] img { transform: none !important; }
+    
+    /* Right End Selection: ALL icons must face RIGHT (Head at x=W). */
+    #grid-right .fit-card img { transform: none !important; }
+    /* These assets are naturally Head-Left, so they MUST be flipped to face Right. */
+    #grid-right .fit-card[data-val="Ball"] img,
+    #grid-right .fit-card[data-val="Bell"] img,
+    #grid-right .fit-card[data-val="Adjust"] img,
+    #grid-right .fit-card[data-val="Thread Swage"] img { transform: scaleX(-1) !important; }
+
+    .fit-card span{font-size:.64rem;font-weight:600;color:var(--muted);line-height:1.3;display:block}
+    .fit-card.active span{color:var(--orange)}
+
+    /* CHIPS & COLORS */
+    .sec{margin-bottom:36px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:12px;border:1px solid var(--border);background:var(--dark3);color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
+    .chip:hover{border-color:rgba(255,107,0,0.5);transform:translateY(-1px);background:var(--dark2)}
+    .chip.active{border-color:var(--orange);background:rgba(255,107,0,.08);color:var(--orange);box-shadow:0 4px 12px rgba(255,107,0,0.12)}
+    
+    .chip .m-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);transition:all .3s}
+    .chip.active .m-dot{background:var(--orange);box-shadow:0 0 8px var(--orange)}
+    .chip .m-cycles{font-size:.7rem;font-weight:500;opacity:0.6;margin-left:4px}
+    .chip.active .m-cycles{opacity:0.8}
+
+    .chip-premium::after{content:"PREMIUM";position:absolute;top:0;right:0;font-size:8px;background:var(--orange);color:#fff;padding:2px 6px;border-radius:0 0 0 6px;font-weight:800;letter-spacing:0.5px}
+
+    .swatches{display:flex;flex-wrap:wrap;gap:12px}
+    .sw-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+    .sw{width:28px;height:28px;border-radius:50%;border:2px solid transparent;transition:all .2s}
+    .sw-wrap.active .sw{border-color:var(--orange);transform:scale(1.15)}
+    .sw-wrap span{font-size:.6rem;color:var(--muted)}
+
+    /* QUOTE BOX */
+    .quote-box{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:30px}
+    .q-summary{background:var(--dark3);border-radius:10px;padding:16px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+    .q-summary .k{font-weight:700;color:var(--muted)}
+    .q-summary .v{color:var(--text);font-weight:600;text-align:right}
+    .q-row{display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid var(--border)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+    .fg{display:flex;flex-direction:column;gap:5px}
+    .fg label{font-size:.72rem;font-weight:600;color:var(--muted)}
+    .fg input,.fg textarea{background:var(--dark1);border:1px solid var(--border);border-radius:7px;padding:10px 12px;color:var(--text);font-size:.86rem;font-family:inherit;width:100%}
+    .btn-send{width:100%;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:9px;font-weight:800;font-size:1rem;cursor:pointer}
+
+    @media(max-width:768px){
+      .fitting-cols{grid-template-columns:1fr}
+      .fitting-grid{grid-template-columns:repeat(3,1fr)}
+      .form-grid{grid-template-columns:1fr}
+      .q-summary{grid-template-columns:1fr}
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float{position:fixed;bottom:40px;right:40px;width:72px;height:72px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:9999;box-shadow:0 10px 28px rgba(37,211,102,0.35);transition:all .3s ease;text-decoration:none}
+    .wa-float:hover{transform:scale(1.08);background:#20ba5a;box-shadow:0 15px 35px rgba(37,211,102,0.45)}
+    @media(max-width:768px){.wa-float{bottom:25px;right:25px;width:60px;height:60px}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo">
+    <span>YONGRUI</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#applications">Solutions</a>
+    <a href="index.html#specs">Specifications</a>
+    <a href="blog.html">Blog</a>
+    <a href="gym-cable.html">Cable Builder</a>
+    <a href="index.html#custom" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-title">Gym Cable Builder</div>
+  <div class="page-sub">Custom configuration — Pick your specification and end fittings.</div>
+
+  <!-- ── PREVIEW ── -->
+  <div class="preview">
+    <canvas id="rope-canvas"></canvas>
+    <div class="rope-tag-box">
+      <span class="rope-tag" id="rope-tag">TPU · 2.4/4mm · Black</span>
+    </div>
+  </div>
+
+  <!-- ── FITTINGS ── -->
+  <div class="fitting-cols">
+    <div>
+      <div class="sec-title">Left End</div>
+      <div class="fitting-grid" id="grid-left">
+        <div class="fit-card active" data-side="left" data-val="Fork" data-img="https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png">
+          <img src="https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png" alt="Fork"><span>Fork</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Eye" data-img="https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png">
+          <img src="https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png" alt="Eye"><span>Eye</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Thread" data-img="https://sc01.alicdn.com/kf/Hca7ab87099f74bdea4955a8364ab10888.png">
+          <img src="https://sc01.alicdn.com/kf/Hca7ab87099f74bdea4955a8364ab10888.png" alt="Thread"><span>Thread</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bolt" data-img="https://sc01.alicdn.com/kf/Heaf83618ea83408eacabe8a6821473bct.png">
+          <img src="https://sc01.alicdn.com/kf/Heaf83618ea83408eacabe8a6821473bct.png" alt="Bolt"><span>Bolt</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Ball" data-img="https://sc01.alicdn.com/kf/Hca13448f93154cfeaed17b46576361b29.png">
+          <img src="https://sc01.alicdn.com/kf/Hca13448f93154cfeaed17b46576361b29.png" alt="Ball"><span>Ball</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Ball+Eye" data-img="https://sc01.alicdn.com/kf/H192e4d64fb08435095e770f92210bcc0M.png">
+          <img src="https://sc01.alicdn.com/kf/H192e4d64fb08435095e770f92210bcc0M.png" alt="Ball+Eye"><span>Ball+Eye</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Cylinder" data-img="https://sc01.alicdn.com/kf/H556fb2ff594d48ecaab33f92a30fb426L.png">
+          <img src="https://sc01.alicdn.com/kf/H556fb2ff594d48ecaab33f92a30fb426L.png" alt="Cylinder"><span>Cylinder</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bell" data-img="https://sc01.alicdn.com/kf/H251c13b28cfc4f16aece81195953e2548.png">
+          <img src="https://sc01.alicdn.com/kf/H251c13b28cfc4f16aece81195953e2548.png" alt="Bell"><span>Bell</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Adjust" data-img="https://sc01.alicdn.com/kf/H15911bf523944391b28a881919d010b1u.png">
+          <img src="https://sc01.alicdn.com/kf/H15911bf523944391b28a881919d010b1u.png" alt="Adjust"><span>Adjust</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bolt (Thin)" data-img="https://sc01.alicdn.com/kf/Hce352eec799a4d2d8975f5599f9d76034.png">
+          <img src="https://sc01.alicdn.com/kf/Hce352eec799a4d2d8975f5599f9d76034.png" alt="Bolt (Thin)"><span>Bolt (Thin)</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Tube" data-img="https://sc01.alicdn.com/kf/Haea6fccf40754776b3f77ad3100b1539F.png">
+          <img src="https://sc01.alicdn.com/kf/Haea6fccf40754776b3f77ad3100b1539F.png" alt="Tube"><span>Tube</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Eye Cover" data-img="https://sc01.alicdn.com/kf/He71dd27389ff4056adcadd7537196afcP.png">
+          <img src="https://sc01.alicdn.com/kf/He71dd27389ff4056adcadd7537196afcP.png" alt="Eye Cover"><span>Eye Cover</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Right Thread" data-img="https://sc01.alicdn.com/kf/H675724af85c24f8b8fa8681f6a4e7ae5o.png">
+          <img src="https://sc01.alicdn.com/kf/H675724af85c24f8b8fa8681f6a4e7ae5o.png" alt="Right Thread"><span>Right Thread</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Ball (Tiny)" data-img="https://sc02.alicdn.com/kf/A0ee7761d84ba4ee7bf5185849486bbd6u.png">
+          <img src="https://sc02.alicdn.com/kf/A0ee7761d84ba4ee7bf5185849486bbd6u.png" alt="Ball (Tiny)"><span>Ball (Tiny)</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Cylinder (R)" data-img="https://sc02.alicdn.com/kf/Ac4e81e4f54e046d79446e17efd054ec3I.png">
+          <img src="https://sc02.alicdn.com/kf/Ac4e81e4f54e046d79446e17efd054ec3I.png" alt="Cylinder (R)"><span>Cylinder (R)</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Step Stopper" data-img="https://sc02.alicdn.com/kf/A4982ca2c83984c0db680af3434e8ecdbP.png">
+          <img src="https://sc02.alicdn.com/kf/A4982ca2c83984c0db680af3434e8ecdbP.png" alt="Step Stopper"><span>Step Stopper</span>
+        </div>
+
+        <div class="fit-card" data-side="left" data-val="Eye (Tiny)" data-img="https://sc01.alicdn.com/kf/H2f45eee422b349cfaa167ea71fca6416s.png">
+          <img src="https://sc01.alicdn.com/kf/H2f45eee422b349cfaa167ea71fca6416s.png" alt="Eye (Tiny)"><span>Eye (Tiny)</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Thread Swage" data-img="https://sc01.alicdn.com/kf/Hf02fe12faa954dd4a595dae2491e364bC.png">
+          <img src="https://sc01.alicdn.com/kf/Hf02fe12faa954dd4a595dae2491e364bC.png" alt="Thread Swage"><span>Thread Swage</span>
+        </div>
+        <div class="fit-card" data-side="left" data-val="Bolt (Med)" data-img="https://sc01.alicdn.com/kf/H5c343803225044d6bd144f51ed2796e4U.png">
+          <img src="https://sc01.alicdn.com/kf/H5c343803225044d6bd144f51ed2796e4U.png" alt="Bolt (Med)"><span>Bolt (Med)</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-title">Right End</div>
+      <div class="fitting-grid" id="grid-right">
+        <div class="fit-card" data-side="right" data-val="Fork" data-img="https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png">
+          <img src="https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png" alt="Fork"><span>Fork</span>
+        </div>
+        <div class="fit-card active" data-side="right" data-val="Eye" data-img="https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png">
+          <img src="https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png" alt="Eye"><span>Eye</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Thread" data-img="https://sc01.alicdn.com/kf/Hca7ab87099f74bdea4955a8364ab10888.png">
+          <img src="https://sc01.alicdn.com/kf/Hca7ab87099f74bdea4955a8364ab10888.png" alt="Thread"><span>Thread</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bolt" data-img="https://sc01.alicdn.com/kf/Heaf83618ea83408eacabe8a6821473bct.png">
+          <img src="https://sc01.alicdn.com/kf/Heaf83618ea83408eacabe8a6821473bct.png" alt="Bolt"><span>Bolt</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Ball" data-img="https://sc01.alicdn.com/kf/Hca13448f93154cfeaed17b46576361b29.png">
+          <img src="https://sc01.alicdn.com/kf/Hca13448f93154cfeaed17b46576361b29.png" alt="Ball"><span>Ball</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Ball+Eye" data-img="https://sc01.alicdn.com/kf/H192e4d64fb08435095e770f92210bcc0M.png">
+          <img src="https://sc01.alicdn.com/kf/H192e4d64fb08435095e770f92210bcc0M.png" alt="Ball+Eye"><span>Ball+Eye</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Cylinder" data-img="https://sc01.alicdn.com/kf/H556fb2ff594d48ecaab33f92a30fb426L.png">
+          <img src="https://sc01.alicdn.com/kf/H556fb2ff594d48ecaab33f92a30fb426L.png" alt="Cylinder"><span>Cylinder</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bell" data-img="https://sc01.alicdn.com/kf/H251c13b28cfc4f16aece81195953e2548.png">
+          <img src="https://sc01.alicdn.com/kf/H251c13b28cfc4f16aece81195953e2548.png" alt="Bell"><span>Bell</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Adjust" data-img="https://sc01.alicdn.com/kf/H15911bf523944391b28a881919d010b1u.png">
+          <img src="https://sc01.alicdn.com/kf/H15911bf523944391b28a881919d010b1u.png" alt="Adjust"><span>Adjust</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bolt (Thin)" data-img="https://sc01.alicdn.com/kf/Hce352eec799a4d2d8975f5599f9d76034.png">
+          <img src="https://sc01.alicdn.com/kf/Hce352eec799a4d2d8975f5599f9d76034.png" alt="Bolt (Thin)"><span>Bolt (Thin)</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Tube" data-img="https://sc01.alicdn.com/kf/Haea6fccf40754776b3f77ad3100b1539F.png">
+          <img src="https://sc01.alicdn.com/kf/Haea6fccf40754776b3f77ad3100b1539F.png" alt="Tube"><span>Tube</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Eye Cover" data-img="https://sc01.alicdn.com/kf/He71dd27389ff4056adcadd7537196afcP.png">
+          <img src="https://sc01.alicdn.com/kf/He71dd27389ff4056adcadd7537196afcP.png" alt="Eye Cover"><span>Eye Cover</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Right Thread" data-img="https://sc01.alicdn.com/kf/H675724af85c24f8b8fa8681f6a4e7ae5o.png">
+          <img src="https://sc01.alicdn.com/kf/H675724af85c24f8b8fa8681f6a4e7ae5o.png" alt="Right Thread"><span>Right Thread</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Ball (Tiny)" data-img="https://sc02.alicdn.com/kf/A0ee7761d84ba4ee7bf5185849486bbd6u.png">
+          <img src="https://sc02.alicdn.com/kf/A0ee7761d84ba4ee7bf5185849486bbd6u.png" alt="Ball (Tiny)"><span>Ball (Tiny)</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Cylinder (R)" data-img="https://sc02.alicdn.com/kf/Ac4e81e4f54e046d79446e17efd054ec3I.png">
+          <img src="https://sc02.alicdn.com/kf/Ac4e81e4f54e046d79446e17efd054ec3I.png" alt="Cylinder (R)"><span>Cylinder (R)</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Step Stopper" data-img="https://sc02.alicdn.com/kf/A4982ca2c83984c0db680af3434e8ecdbP.png">
+          <img src="https://sc02.alicdn.com/kf/A4982ca2c83984c0db680af3434e8ecdbP.png" alt="Step Stopper"><span>Step Stopper</span>
+        </div>
+
+        <div class="fit-card" data-side="right" data-val="Eye (Tiny)" data-img="https://sc01.alicdn.com/kf/H2f45eee422b349cfaa167ea71fca6416s.png">
+          <img src="https://sc01.alicdn.com/kf/H2f45eee422b349cfaa167ea71fca6416s.png" alt="Eye (Tiny)"><span>Eye (Tiny)</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Thread Swage" data-img="https://sc01.alicdn.com/kf/Hf02fe12faa954dd4a595dae2491e364bC.png">
+          <img src="https://sc01.alicdn.com/kf/Hf02fe12faa954dd4a595dae2491e364bC.png" alt="Thread Swage"><span>Thread Swage</span>
+        </div>
+        <div class="fit-card" data-side="right" data-val="Bolt (Med)" data-img="https://sc01.alicdn.com/kf/H5c343803225044d6bd144f51ed2796e4U.png">
+          <img src="https://sc01.alicdn.com/kf/H5c343803225044d6bd144f51ed2796e4U.png" alt="Bolt (Med)"><span>Bolt (Med)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CABLE SPEC ── -->
+  <div class="sec">
+    <div class="sec-title">Coating Material</div>
+    <div class="chips" data-group="coating">
+      <div class="chip active" data-val="TPU">
+        <span class="m-dot"></span>
+        <span>TPU</span>
+        <span class="m-cycles">100K–150K cycles</span>
+      </div>
+      <div class="chip" data-val="Nylon">
+        <span class="m-dot"></span>
+        <span>Nylon</span>
+        <span class="m-cycles">up to 500K cycles</span>
+      </div>
+      <div class="chip chip-premium" data-val="Pro Nylon">
+        <span class="m-dot"></span>
+        <span>Pro Nylon (PA12)</span>
+        <span class="m-cycles">up to 1M cycles</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Diameter (Steel Core / OD)</div>
+    <div class="chips" data-group="diameter">
+      <div class="chip active" data-val="2.4/4mm"><span class="m-dot"></span><span>7×7 &nbsp; Ø2.4/4 mm</span></div>
+      <div class="chip" data-val="3.18/4.8mm"><span class="m-dot"></span><span>7×19 &nbsp; Ø3.18/4.8 mm</span></div>
+      <div class="chip" data-val="3.97/5.8mm"><span class="m-dot"></span><span>7×19 &nbsp; Ø3.97/5.8 mm</span></div>
+      <div class="chip" data-val="4.8/6.35mm"><span class="m-dot"></span><span>7×19 &nbsp; Ø4.8/6.35 mm</span></div>
+      <div class="chip" data-val="6/7.8mm"><span class="m-dot"></span><span>7×19 &nbsp; Ø6/7.8 mm</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Color</div>
+    <div class="swatches">
+      <div class="sw-wrap active" data-val="Black" data-hex="#111"><div class="sw" style="background:#111"></div><span>Black</span></div>
+      <div class="sw-wrap" data-val="Silver" data-hex="#b0b0b0"><div class="sw" style="background:#b0b0b0"></div><span>Silver</span></div>
+      <div class="sw-wrap" data-val="Red" data-hex="#dc2626"><div class="sw" style="background:#dc2626"></div><span>Red</span></div>
+      <div class="sw-wrap" data-val="Orange" data-hex="#FF6B00"><div class="sw" style="background:#FF6B00"></div><span>Orange</span></div>
+    </div>
+  </div>
+
+  <!-- ── QUOTE ── -->
+    <div class="quote-box">
+      <div class="q-summary">
+        <div class="q-row"><span class="k">Left End</span><span class="v" id="s-left">Fork</span></div>
+        <div class="q-row"><span class="k">Right End</span><span class="v" id="s-right">Eye</span></div>
+        <div class="q-row"><span class="k">Coating</span><span class="v" id="s-coating">TPU</span></div>
+        <div class="q-row"><span class="k">Diameter</span><span class="v" id="s-diameter">2.4/4mm</span></div>
+        <div class="q-row"><span class="k">Length</span><span class="v" id="s-len">—</span></div>
+      </div>
+      <form id="quote-form">
+        <div class="form-grid">
+          <div class="fg"><label>Length (mm) *</label><input type="number" name="length_mm" id="f-len" placeholder="e.g. 2400" required></div>
+          <div class="fg"><label>Quantity *</label><input type="number" name="quantity" id="f-qty" placeholder="e.g. 100" required></div>
+          <div class="fg"><label>Name *</label><input type="text" name="name" id="f-name" required></div>
+          <div class="fg"><label>Email *</label><input type="email" name="email" id="f-email" required></div>
+        </div>
+        <!-- Hidden Fields for configuration -->
+        <input type="hidden" name="_subject" id="f-subject" value="Gym Cable Inquiry">
+        <input type="hidden" name="coating" id="h-coating">
+        <input type="hidden" name="diameter" id="h-diameter">
+        <input type="hidden" name="left_end" id="h-left">
+        <input type="hidden" name="right_end" id="h-right">
+        <input type="hidden" name="color" id="h-color">
+        <button type="submit" class="btn-send" id="btn-send">Send Inquiry →</button>
+      </form>
+      <div id="form-msg" style="margin-top:20px;padding:12px;border-radius:8px;display:none;text-align:center;font-weight:600"></div>
+    </div>
+  </div>
+
+  <div style="height:100px"></div>
+</div>
+
+<footer>
+  &copy; 2026 Shanghai Yongrui Metal Products Co., Ltd. | ISO 9001 Certified Factory
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('rope-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  const state = {
+    left:     'Fork',
+    right:    'Eye',
+    _imgLeft: 'https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png',
+    _imgRight: 'https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png',
+    coating:  'TPU',
+    diameter: '2.4/4mm',
+    color:    '#111'
+  };
+
+  const FIT = {
+    'Fork':      { w:220, tf:0.25, v:3,  url:'https://sc01.alicdn.com/kf/Ha7bd567986ca4590b330e5a680a7bf74X.png' },
+    'Eye':       { w:220, tf:0.25, v:4,  url:'https://sc01.alicdn.com/kf/H7cfe3eaba4374d31aa3af6b76fbf52a3Z.png' },
+    'Thread':    { w:220, tf:0.25, v:2,  url:'https://sc01.alicdn.com/kf/Hca7ab87099f74bdea4955a8364ab10888.png' },
+    'Bolt':      { w:220, tf:0.25, v:3,  url:'https://sc01.alicdn.com/kf/Heaf83618ea83408eacabe8a6821473bct.png' },
+    'Ball':      { w:200, tf:0.75, v:2,  url:'https://sc01.alicdn.com/kf/Hca13448f93154cfeaed17b46576361b29.png', rev:true },
+    'Ball+Eye':  { w:220, tf:0.25, v:2,  url:'https://sc01.alicdn.com/kf/H192e4d64fb08435095e770f92210bcc0M.png' },
+    'Cylinder':  { w:220, tf:0.25, v:2,  url:'https://sc01.alicdn.com/kf/H556fb2ff594d48ecaab33f92a30fb426L.png' },
+    'Bell':      { w:200, tf:0.75, v:4,  url:'https://sc01.alicdn.com/kf/H251c13b28cfc4f16aece81195953e2548.png', rev:true },
+    'Adjust':    { w:240, tf:0.75, v:3,  url:'https://sc01.alicdn.com/kf/H15911bf523944391b28a881919d010b1u.png', rev:true },
+    'Bolt (Thin)': { w:220, tf:0.25, v:4,  url:'https://sc01.alicdn.com/kf/Hce352eec799a4d2d8975f5599f9d76034.png' },
+    'Tube':      { w:220, tf:0.25, v:4,  url:'https://sc01.alicdn.com/kf/Haea6fccf40754776b3f77ad3100b1539F.png' },
+    'Eye Cover': { w:220, tf:0.25, v:2,  url:'https://sc01.alicdn.com/kf/He71dd27389ff4056adcadd7537196afcP.png' },
+    'Right Thread': { w:220, tf:0.25, v:-3, url:'https://sc01.alicdn.com/kf/H675724af85c24f8b8fa8681f6a4e7ae5o.png' },
+    'Ball (Tiny)': { w:220, tf:0, v:11, url:'https://sc02.alicdn.com/kf/A0ee7761d84ba4ee7bf5185849486bbd6u.png' },
+    'Cylinder (R)':{ w:220, tf:0, v:12, url:'https://sc02.alicdn.com/kf/Ac4e81e4f54e046d79446e17efd054ec3I.png' },
+    'Step Stopper':{ w:220, tf:0, v:10, url:'https://sc02.alicdn.com/kf/A4982ca2c83984c0db680af3434e8ecdbP.png' },
+    'Eye (Tiny)': { w:220, tf:0.25, v:2,  url:'https://sc01.alicdn.com/kf/H2f45eee422b349cfaa167ea71fca6416s.png' },
+    'Thread Swage':{ w:220, tf:0.75, v:2,  url:'https://sc01.alicdn.com/kf/Hf02fe12faa954dd4a595dae2491e364bC.png', rev:true },
+    'Bolt (Med)':  { w:220, tf:0.25, v:3,  url:'https://sc01.alicdn.com/kf/H5c343803225044d6bd144f51ed2796e4U.png' }
+  };
+  const DEF = { w:200, tf:0.20, v:0 };
+
+  const imgCache = {};
+  function loadImg(url, cb){
+    if(imgCache[url]){ cb(imgCache[url]); return; }
+    const im = new Image();
+    im.crossOrigin = 'anonymous';
+    im.onload  = () => { imgCache[url] = im; cb(im); };
+    im.onerror = () => { imgCache[url] = null; cb(null); };
+    im.src = url;
+  }
+
+  function draw(){
+    const dpr  = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    const W    = rect.width;
+    const H    = 180;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    const CY = H / 2;
+    const cfgL = FIT[state.left]  || DEF;
+    const cfgR = FIT[state.right] || DEF;
+
+    const leftTailX = cfgL.w * (cfgL.rev ? cfgL.tf : (1 - cfgL.tf));
+    const rightSlotX = W - cfgR.w;
+    const rightTailX = rightSlotX + cfgR.w * (cfgR.rev ? (1 - cfgR.tf) : cfgR.tf);
+
+    const ropeColor = (state.color === '#ffffff' || state.color === '#f8f8f8') ? '#aaa' : state.color;
+    ctx.save();
+    const grad = ctx.createLinearGradient(0, CY - 8, 0, CY + 8);
+    if (state.color === '#000000' || state.color === 'black') {
+      grad.addColorStop(0, '#333333');
+      grad.addColorStop(0.3, '#111111');
+      grad.addColorStop(1, '#000000');
+    } else {
+      grad.addColorStop(0, ropeColor);
+      grad.addColorStop(1, '#000000');
+    }
+    ctx.shadowColor   = 'rgba(0,0,0,0.3)';
+    ctx.shadowBlur    = 4;
+    ctx.shadowOffsetY = 2;
+    ctx.beginPath();
+    ctx.moveTo(leftTailX - 50, CY);
+    ctx.lineTo(rightTailX + 50, CY);
+    ctx.lineWidth   = 16;
+    ctx.strokeStyle = grad;
+    ctx.lineCap     = 'butt'; 
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(leftTailX - 50, CY - 3);
+    ctx.lineTo(rightTailX + 50, CY - 3);
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.stroke();
+    ctx.restore();
+
+    const imL = imgCache[state._imgLeft];
+    if(imL){
+      const iHL = cfgL.w * (imL.height / imL.width);
+      const drawY = CY - iHL/2 + (cfgL.v || 0); 
+      ctx.save();
+      if(cfgL.rev){ ctx.drawImage(imL, 0, drawY, cfgL.w, iHL); }
+      else { ctx.translate(cfgL.w, 0); ctx.scale(-1, 1); ctx.drawImage(imL, 0, drawY, cfgL.w, iHL); }
+      ctx.restore();
+    }
+
+    const imR = imgCache[state._imgRight];
+    if(imR){
+      const iHR = cfgR.w * (imR.height / imR.width);
+      const drawY = CY - iHR/2 + (cfgR.v || 0);
+      ctx.save();
+      if(cfgR.rev){ ctx.translate(W, 0); ctx.scale(-1, 1); ctx.drawImage(imR, 0, drawY, cfgR.w, iHR); }
+      else { ctx.drawImage(imR, rightSlotX, drawY, cfgR.w, iHR); }
+      ctx.restore();
+    }
+
+    ctx.fillStyle = '#FF6B00';
+    ctx.font      = 'bold 12px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(state.left,  cfgL.w / 2,     CY + 70);
+    ctx.fillText(state.right, W - cfgR.w / 2, CY + 70);
+  }
+
+  function redraw(){
+    let loaded = 0;
+    const check = () => { if(++loaded === 2) draw(); };
+    loadImg(state._imgLeft,  check);
+    loadImg(state._imgRight, check);
+  }
+
+  window.addEventListener('resize', draw);
+
+  const colorNames = { '#111':'Black','#b0b0b0':'Silver','#dc2626':'Red','#FF6B00':'Orange' };
+  function updateTag(){
+    const c = colorNames[state.color] || state.color;
+    document.getElementById('rope-tag').textContent = `${state.coating} \u00b7 ${state.diameter} \u00b7 ${c}`;
+    
+    // Update hidden fields for form
+    document.getElementById('h-coating').value = state.coating;
+    document.getElementById('h-diameter').value = state.diameter;
+    document.getElementById('h-left').value = state.left;
+    document.getElementById('h-right').value = state.right;
+    document.getElementById('h-color').value = c;
+    document.getElementById('f-subject').value = `Gym Cable Inquiry — ${state.coating} · Ø${state.diameter} · ${state.left}/${state.right}`;
+  }
+
+  document.querySelectorAll('.fit-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const side = card.dataset.side;
+      document.querySelectorAll(`.fit-card[data-side="${side}"]`).forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state[side] = card.dataset.val;
+      if(side === 'left')  state._imgLeft  = card.dataset.img;
+      else                 state._imgRight = card.dataset.img;
+      document.getElementById('s-'+side).textContent = card.dataset.val;
+      redraw();
+      updateTag();
+    });
+  });
+
+  document.querySelectorAll('[data-group="coating"] .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-group="coating"] .chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.coating = chip.dataset.val;
+      document.getElementById('s-coating').textContent = chip.dataset.val;
+      updateTag();
+    });
+  });
+
+  document.querySelectorAll('[data-group="diameter"] .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-group="diameter"] .chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.diameter = chip.dataset.val;
+      document.getElementById('s-diameter').textContent = chip.dataset.val;
+      updateTag();
+    });
+  });
+
+  document.querySelectorAll('.sw-wrap').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.sw-wrap').forEach(s=>s.classList.remove('active'));
+      sw.classList.add('active');
+      state.color = sw.dataset.hex;
+      updateTag();
+      draw();
+    });
+  });
+
+  document.getElementById('f-len').addEventListener('input', function(){
+    document.getElementById('s-len').textContent = this.value ? this.value+' mm' : '—';
+  });
+
+  /* Form Submission Logic */
+  const form = document.getElementById('quote-form');
+  const msg  = document.getElementById('form-msg');
+  if(form){
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-send');
+      btn.disabled = true; btn.innerText = "Sending...";
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/info@yrsteelwirerope.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (response.ok) {
+          msg.style.display = "block"; msg.style.background = "rgba(34,197,94,0.15)";
+          msg.style.color = "#4ade80"; msg.innerText = "Thank you! We will reply within 24 hours.";
+          form.reset();
+        } else { throw new Error(); }
+      } catch (err) {
+        msg.style.display = "block"; msg.style.background = "rgba(239,68,68,0.15)";
+        msg.style.color = "#f87171"; msg.innerText = "Submission failed. Please email us directly.";
+      } finally { btn.disabled = false; btn.innerText = "Send Inquiry →"; }
+    });
+  }
+
+  const defLeft  = document.querySelector('.fit-card.active[data-side="left"]');
+  const defRight = document.querySelector('.fit-card.active[data-side="right"]');
+  state._imgLeft  = defLeft  ? defLeft.dataset.img  : '';
+  state._imgRight = defRight ? defRight.dataset.img : '';
+  updateTag();
+  redraw();
+})();
+</script>
+<a href="https://wa.me/8617601249122" class="wa-float" target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 448 512" width="38" height="38" fill="#fff"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-93.9-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.5 3.6 35.1 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+</body>
+</html>
