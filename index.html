@@ -194,6 +194,22 @@
     .product-cta-primary{background:var(--orange);border-color:var(--orange);color:#fff}
     .product-cta-primary:hover{background:var(--orange-light);border-color:var(--orange-light)}
     
+    /* ── FACTORY SECTION ── */
+    .factory-section{background:var(--dark2);padding:100px 40px}
+    .factory-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+    .factory-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .factory-img-main{grid-column:span 2;border-radius:12px;overflow:hidden;height:280px}
+    .factory-img-sub{border-radius:8px;overflow:hidden;height:150px}
+    .factory-img-main img,.factory-img-sub img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .factory-gallery div:hover img{transform:scale(1.05)}
+    .cert-badges{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
+    .cert-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:14px 16px;border-radius:10px;text-align:center;min-width:100px;flex:1}
+    .cert-item .cert-logo{height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+    .cert-item img{max-height:52px;max-width:100%;object-fit:contain;filter:grayscale(1) brightness(1.8);transition:filter .3s}
+    .cert-item:hover img{filter:grayscale(0) brightness(1)}
+    .cert-label{font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+    @media(max-width:992px){.factory-grid{grid-template-columns:1fr}}
+
     /* ── SPEC TABLE ── */
     .spec-section{background:var(--black)}
     .spec-table-wrap{overflow-x:auto;background:var(--dark1);border-radius:var(--radius);border:1px solid var(--border)}
@@ -391,6 +407,159 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- FACTORY TRUST -->
+<section style="background:var(--dark2);padding:0 0 0 0;overflow:hidden">
+
+  <!-- Top: Full-width factory video background -->
+  <div id="factory-hero" style="position:relative;height:480px;overflow:hidden">
+    <video autoplay muted loop playsinline id="factory-bg"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0">
+      <source src="https://raw.githubusercontent.com/karryhua527-dev/yongrui-website/main/6%E6%9C%8825%E6%97%A5%E5%B7%A5%E5%8E%82.mp4" type="video/mp4">
+      <img src="https://sc02.alicdn.com/kf/Ha8193b45b86341ec9d8be350417a9c39M.png" alt="Yongrui Factory" style="width:100%;height:100%;object-fit:cover">
+    </video>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.5) 55%, rgba(10,10,10,0.15) 100%);z-index:1"></div>
+    <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);max-width:580px;z-index:2">
+      <div class="section-label">Production Excellence</div>
+      <h2 style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;color:#fff">
+        Production Excellence<br><span style="color:var(--orange)">Certified Factory</span>
+      </h2>
+      <p style="color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;margin-bottom:28px">
+        Vertically integrated from steel stranding to coating and final assembly — every cable fatigue-tested before it ships.
+      </p>
+      <!-- Inline trust stats -->
+      <div style="display:flex;gap:32px;margin-bottom:28px;flex-wrap:wrap">
+        <div><div style="font-size:1.6rem;font-weight:900;color:var(--orange)">17+</div><div style="font-size:.78rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px">Years Factory</div></div>
+        <div><div style="font-size:1.6rem;font-weight:900;color:var(--orange)">30+</div><div style="font-size:.78rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px">Countries Served</div></div>
+      </div>
+      <a href="#custom" class="btn btn-primary" style="font-size:.9rem;padding:14px 28px">
+        📋 Request Factory Audit &amp; Certificates
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom: Two vertical tensile test videos + cert stats -->
+  <div style="background:var(--dark1);padding:48px 40px">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div style="text-align:center;margin-bottom:40px">
+        <div class="section-label" style="justify-content:center;display:flex">Quality Proof</div>
+        <h3 style="font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:12px">TÜV Tensile Load Testing — Live</h3>
+        <p style="color:#888;font-size:.95rem">Every batch undergoes third-party destructive tensile testing. Watch our cables being pushed to their breaking limit.</p>
+      </div>
+
+      <!-- Videos + Certs Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;align-items:start">
+
+        <!-- Test Video 1 -->
+        <div style="border-radius:12px;overflow:hidden;background:var(--dark2);border:1px solid var(--border)">
+          <div style="position:relative;aspect-ratio:9/16;overflow:hidden">
+            <video autoplay muted loop playsinline
+                   style="width:100%;height:100%;object-fit:cover">
+              <source src="https://raw.githubusercontent.com/karryhua527-dev/yongrui-website/main/test1.mp4.mp4" type="video/mp4">
+            </video>
+            <div style="position:absolute;top:12px;left:12px;background:rgba(255,107,0,0.9);color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:1px">● Live Test</div>
+          </div>
+          <div style="padding:16px">
+            <div style="font-weight:800;color:#fff;margin-bottom:4px">Tensile Strength Test #1</div>
+            <div style="font-size:.82rem;color:#888">Breaking load verification per batch. TÜV certified protocol.</div>
+          </div>
+        </div>
+
+        <!-- Test Video 2 -->
+        <div style="border-radius:12px;overflow:hidden;background:var(--dark2);border:1px solid var(--border)">
+          <div style="position:relative;aspect-ratio:9/16;overflow:hidden">
+            <video autoplay muted loop playsinline
+                   style="width:100%;height:100%;object-fit:cover">
+              <source src="https://raw.githubusercontent.com/karryhua527-dev/yongrui-website/main/test2.mp4.mp4" type="video/mp4">
+            </video>
+            <div style="position:absolute;top:12px;left:12px;background:rgba(255,107,0,0.9);color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:1px">● Live Test</div>
+          </div>
+          <div style="padding:16px">
+            <div style="font-weight:800;color:#fff;margin-bottom:4px">Tensile Strength Test #2</div>
+            <div style="font-size:.82rem;color:#888">Fatigue cycle endurance verified under full load conditions.</div>
+          </div>
+        </div>
+
+        <!-- Right: Single unified authority card spanning 2 columns -->
+        <div style="grid-column:span 2;background:var(--dark2);border:1px solid rgba(255,107,0,0.15);border-radius:12px;padding:36px;display:flex;flex-direction:column;justify-content:space-between">
+
+          <!-- Top: Title -->
+          <div style="margin-bottom:24px">
+            <div style="font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px">Certified Quality</div>
+            <h4 style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Third-Party Verified.<br>Every Single Batch.</h4>
+            <p style="font-size:.85rem;color:#888;line-height:1.7">Our wire ropes are independently tested by SGS, TÜV SÜD, and certified under ISO 9001:2015. You receive full documentation with every shipment.</p>
+          </div>
+
+          <!-- Middle: Real certificate images in a row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px">
+
+            <!-- ISO 9001 Real Certificate -->
+            <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;cursor:pointer;text-align:center;padding:12px"
+                 title="ISO 9001:2015 Quality Management Certificate">
+              <img src="https://sc02.alicdn.com/kf/Heb8dcb8f7523454b82fabcc848618010i.png"
+                   alt="ISO 9001:2015 Certificate — Shanghai Yongrui Metal Products Co., Ltd."
+                   style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
+              <div style="padding:10px 0 4px">
+                <div style="font-size:.75rem;font-weight:800;color:#fff">ISO 9001 : 2015</div>
+                <div style="font-size:.68rem;color:#888">Quality Management System</div>
+              </div>
+            </div>
+
+            <!-- SGS RoHS Real Certificate -->
+            <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;cursor:pointer;text-align:center;padding:12px"
+                 title="SGS RoHS Test Report — EU Directive 2015/863">
+              <img src="https://sc02.alicdn.com/kf/Hd3f0f11924414f1f9c40fd97d8534c10q.png"
+                   alt="SGS RoHS Test Report — EU RoHS 2015/863 Pass — Shanghai Yongrui Metal"
+                   style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
+              <div style="padding:10px 0 4px">
+                <div style="font-size:.75rem;font-weight:800;color:#22c55e">SGS RoHS ✓ Pass</div>
+                <div style="font-size:.68rem;color:#888">EU Directive 2015/863</div>
+              </div>
+            </div>
+
+            <!-- TÜV SÜD Real Test Report -->
+            <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;cursor:pointer;text-align:center;padding:12px"
+                 title="TÜV SÜD Test Report No.70.435.26.10468.01 — Shanghai Yongrui Metal">
+              <img src="https://sc02.alicdn.com/kf/H6ce992c0e17c4041a2cad1d7ad3b311ed.png"
+                   alt="TÜV SÜD Test Report No.70.435.26.10468.01 — Galvanized Wire Rope Sling — Shanghai Yongrui Metal Products Co., Ltd."
+                   style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
+              <div style="padding:10px 0 4px">
+                <div style="font-size:.75rem;font-weight:800;color:var(--orange)">TÜV SÜD ✓ Pass</div>
+                <div style="font-size:.68rem;color:#888">Tensile Test Report No. 70.435.26.10468.01</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom: 4 stats -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid rgba(255,255,255,0.07);padding-top:24px">
+            <div style="text-align:center">
+              <div style="font-size:1.8rem;font-weight:900;color:var(--orange);line-height:1">17+</div>
+              <div style="font-size:.72rem;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:4px">Years Factory</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.8rem;font-weight:900;color:var(--orange);line-height:1">30+</div>
+              <div style="font-size:.72rem;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:4px">Countries</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.8rem;font-weight:900;color:var(--orange);line-height:1">1M+</div>
+              <div style="font-size:.72rem;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:4px">Cycle Lifespan</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.8rem;font-weight:900;color:var(--orange);line-height:1">60+</div>
+              <div style="font-size:.72rem;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:4px">Hardware SKUs</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- WHY US -->
@@ -608,6 +777,23 @@ document.querySelectorAll(".faq-q").forEach(q => {
 var hb=document.getElementById("hamburger");
 var nl=document.querySelector(".nav-links");
 if(hb&&nl){hb.addEventListener("click",function(){nl.style.display=nl.style.display==="flex"?"none":"flex";});}
+
+/* Factory Parallax */
+(function(){
+  var hero=document.getElementById("factory-hero");
+  var bg=document.getElementById("factory-bg");
+  if(!hero||!bg)return;
+  function onScroll(){
+    var rect=hero.getBoundingClientRect();
+    var visible=rect.top<window.innerHeight&&rect.bottom>0;
+    if(!visible)return;
+    var progress=(window.innerHeight-rect.top)/(window.innerHeight+rect.height);
+    var offset=Math.round((progress-0.5)*80);
+    bg.style.transform="translateY("+offset+"px)";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
 
 /* Form Submission */
 const form = document.getElementById("quote-form");
