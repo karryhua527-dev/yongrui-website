@@ -77,8 +77,12 @@
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Preconnect to speed up font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- font-display:swap prevents render blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -308,7 +312,7 @@
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo" width="40" height="40" loading="eager">
     <span>YONGRUI</span>
   </a>
   <div class="nav-links">
@@ -523,6 +527,7 @@
                  title="ISO 9001:2015 Quality Management Certificate">
               <img src="https://sc02.alicdn.com/kf/Heb8dcb8f7523454b82fabcc848618010i.png"
                    alt="ISO 9001:2015 Certificate — Shanghai Yongrui Metal Products Co., Ltd."
+                   loading="lazy" width="300" height="400"
                    style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
               <div style="padding:10px 0 4px">
                 <div style="font-size:.75rem;font-weight:800;color:#fff">ISO 9001 : 2015</div>
@@ -533,8 +538,9 @@
             <!-- SGS RoHS Real Certificate -->
             <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;cursor:pointer;text-align:center;padding:12px"
                  title="SGS RoHS Test Report — EU Directive 2015/863">
-              <img src="https://sc02.alicdn.com/kf/Hd3f0f11924414f1f9c40fd97d8534c10q.png"
-                   alt="SGS RoHS Test Report — EU RoHS 2015/863 Pass — Shanghai Yongrui Metal"
+              <img src="https://sc02.alicdn.com/kf/H31ed90230aee4600b8e0c11c9cf21c70K.png"
+                   alt="SGS RoHS Test Report No.SHAPH25029469101 — EU RoHS 2015/863 Pass — Shanghai Yongrui Metal"
+                   loading="lazy" width="300" height="400"
                    style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
               <div style="padding:10px 0 4px">
                 <div style="font-size:.75rem;font-weight:800;color:#22c55e">SGS RoHS ✓ Pass</div>
@@ -545,8 +551,9 @@
             <!-- TÜV SÜD Real Test Report -->
             <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;cursor:pointer;text-align:center;padding:12px"
                  title="TÜV SÜD Test Report No.70.435.26.10468.01 — Shanghai Yongrui Metal">
-              <img src="https://sc02.alicdn.com/kf/H6ce992c0e17c4041a2cad1d7ad3b311ed.png"
+              <img src="https://sc02.alicdn.com/kf/Hca049ef78b0342c5a86e55f45bf5103bG.png"
                    alt="TÜV SÜD Test Report No.70.435.26.10468.01 — Galvanized Wire Rope Sling — Shanghai Yongrui Metal Products Co., Ltd."
+                   loading="lazy" width="300" height="400"
                    style="width:100%;height:auto;object-fit:contain;display:block;border-radius:6px">
               <div style="padding:10px 0 4px">
                 <div style="font-size:.75rem;font-weight:800;color:var(--orange)">TÜV SÜD ✓ Pass</div>
@@ -749,7 +756,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="nav-logo">
-        <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="YONGRUI Logo">
+        <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="YONGRUI Logo" width="40" height="40" loading="lazy">
       </a>
       <p>Factory-direct gym cable manufacturer. ISO 9001 certified. Shanghai, China.</p>
     </div>
