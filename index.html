@@ -77,13 +77,17 @@
     ]
   }
   </script>
-  <!-- Preconnect to speed up font loading -->
+  <!-- Preconnect to speed up font & image loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://sc01.alicdn.com" crossorigin />
   <!-- font-display:swap prevents render blocking -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+  <!-- Preload LCP hero image (highest priority) -->
+  <link rel="preload" as="image" href="https://sc01.alicdn.com/kf/Hbab519a0bc084a37a9143b9674eaf4ebm.png" fetchpriority="high" />
   <style>
+    @font-face{font-family:'Inter';font-display:swap}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --orange:#FF6B00;--orange-light:#FF8C30;--orange-dark:#E05E00;
@@ -118,6 +122,7 @@
       position: absolute;
       inset: 0;
       background: url("https://sc01.alicdn.com/kf/Hbab519a0bc084a37a9143b9674eaf4ebm.png") center/cover no-repeat;
+      content-visibility: auto;
       z-index: 1;
     }
     .hero::after {
@@ -312,7 +317,7 @@
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo" width="40" height="40" loading="eager">
+    <img src="https://sc01.alicdn.com/kf/H6f3077198e314dccadd23c7dbd475553k.png" alt="Yongrui Logo" width="70" height="70" loading="eager" fetchpriority="low" style="height:40px;width:auto">
     <span>YONGRUI</span>
   </a>
   <div class="nav-links">
