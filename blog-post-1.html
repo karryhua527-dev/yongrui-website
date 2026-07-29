@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXPEWJL3XL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SXPEWJL3XL');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -252,5 +260,30 @@
   <p>&copy; 2026 Shanghai Yongrui Metal Products Co., Ltd. &nbsp;|&nbsp; <a href="mailto:info@yrsteelwirerope.com" style="color:var(--orange)">info@yrsteelwirerope.com</a></p>
 </footer>
 
+<script>
+(function(){
+  function sendEvent(name, params){
+    if(typeof window.gtag === "function"){
+      window.gtag("event", name, Object.assign({
+        page_path: window.location.pathname,
+        transport_type: "beacon"
+      }, params || {}));
+    }
+  }
+  window.trackLead = function(formName){
+    sendEvent("generate_lead", {form_name: formName});
+  };
+  document.addEventListener("click", function(event){
+    var link = event.target.closest && event.target.closest("a[href]");
+    if(!link) return;
+    var href = link.getAttribute("href") || "";
+    if(href.indexOf("wa.me/") !== -1){
+      sendEvent("whatsapp_click", {link_url: link.href});
+    } else if(href.indexOf("mailto:") === 0){
+      sendEvent("email_click", {link_url: href});
+    }
+  });
+})();
+</script>
 </body>
 </html>
