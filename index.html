@@ -371,7 +371,7 @@
     <h2 class="section-title">Built for Every Training Environment</h2>
     <p class="section-sub">Our gym cables are trusted by commercial equipment OEMs, gym chains, and fitness brands worldwide.</p></div>
     <div class="apps-grid">
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Hbd813994fbbf42dcbab0e818fe574490Y.png') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-cable-machines.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x1F3CB;</div>
@@ -380,7 +380,7 @@
           <div class="app-tags"><span class="app-tag">High-Cycle</span><span class="app-tag">Low Stretch</span><span class="app-tag">OEM Ready</span></div>
         </div>
       </div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Hb928982406514704a00ba9bd3837b280i.png') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-lat-pulldowns.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x1F4AA;</div>
@@ -389,7 +389,7 @@
           <div class="app-tags"><span class="app-tag">7&times;19</span><span class="app-tag">Low Elongation</span><span class="app-tag">Heavy Load</span></div>
         </div>
       </div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H47cd73d4b5d14e9f8ec5759a02929b38K.jpg') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-home-gyms.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x1F3E0;</div>
@@ -398,7 +398,7 @@
           <div class="app-tags"><span class="app-tag">Space Saving</span><span class="app-tag">Versatile</span><span class="app-tag">Home Use</span></div>
         </div>
       </div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/Heb21b21f9ade4092939eac1ab7b292daJ.png') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-functional-trainers.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x26F9;</div>
@@ -407,7 +407,7 @@
           <div class="app-tags"><span class="app-tag">Precision</span><span class="app-tag">Smooth Pull</span><span class="app-tag">Multi-Axis</span></div>
         </div>
       </div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H2169f08719104c43b4aca822a2f59390R.png') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-pilates-reformers.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x1F9D8;</div>
@@ -416,7 +416,7 @@
           <div class="app-tags"><span class="app-tag">Silent</span><span class="app-tag">Smooth</span><span class="app-tag">Low Friction</span></div>
         </div>
       </div>
-      <div class="app-card" style="background:url('https://sc01.alicdn.com/kf/H7f31952bcddf434a823de0185b386fa7k.png') center/cover no-repeat">
+      <div class="app-card lazy-bg" data-bg="scene-repair-maintenance.avif">
         <div class="app-card-overlay"></div>
         <div class="app-card-content">
           <div class="app-icon">&#x1F6A7;</div>
@@ -822,6 +822,33 @@ document.querySelectorAll(".faq-q").forEach(q => {
 var hb=document.getElementById("hamburger");
 var nl=document.querySelector(".nav-links");
 if(hb&&nl){hb.addEventListener("click",function(){nl.style.display=nl.style.display==="flex"?"none":"flex";});}
+
+/* Lazy application-card backgrounds: load only when the section is near view. */
+(function(){
+  var cards = document.querySelectorAll(".lazy-bg[data-bg]");
+  var loadBackground = function(card){
+    if(card.dataset.bgLoaded === "true") return;
+    card.style.backgroundImage = "url('" + card.dataset.bg + "')";
+    card.style.backgroundPosition = "center";
+    card.style.backgroundSize = "cover";
+    card.style.backgroundRepeat = "no-repeat";
+    card.dataset.bgLoaded = "true";
+  };
+
+  if("IntersectionObserver" in window){
+    var bgObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          loadBackground(entry.target);
+          bgObserver.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin:"300px 0px"});
+    cards.forEach(function(card){ bgObserver.observe(card); });
+  } else {
+    cards.forEach(loadBackground);
+  }
+})();
 
 /* Lazy video loading: do not request large MP4 files during initial page load. */
 document.querySelectorAll(".vid-wrap").forEach(function(wrap){
